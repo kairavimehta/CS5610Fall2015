@@ -1,0 +1,153 @@
+<html>
+<head>
+    <title>Form Fields</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h3>FormMaker</h3>
+        </div>
+        <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">UserName</a></li>
+                <li><a href="#">LogOut</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation"><a href="home.html">Home</a></li>
+                <li role="presentation"><a href="profile.html">Profile</a></li>
+                <li role="presentation"><a href="admin.html">Admin</a></li>
+                <li role="presentation" class="active"><a href="forms.html">Forms</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-md-10">
+            <h1>Forms</h1>
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div>
+                        <ul class="nav nav-tabs">
+                            <li role="presentation"><a href="forms.html">Forms</a></li>
+                            <li role="presentation" class="active"><a href="form-fields.html">Fields</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <form>
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" id="fname" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+                    <input type="text" class="form-control" id="lname" placeholder="Lame Name">
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date Of Birth:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+                    <select id="dob" class="form-control">
+                        <option>Select Date</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+                    <select id="gender" class="form-control">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="role">Roles:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+                    <div class="checkbox" id="role">
+                        <label>
+                            <input type="checkbox" checked> Admin
+                        </label>
+                    </div>
+                    <div class="checkbox" id="role">
+                        <label>
+                            <input type="checkbox"> Student
+                        </label>
+                    </div>
+                    <div class="checkbox" id="role">
+                        <label>
+                            <input type="checkbox" checked> User
+                        </label>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="la">License Agreement:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                    </div>
+                    <div class="radio" id="la">
+                        <label>
+                            <input type="radio" checked> Yes
+                        </label>
+                    </div>
+                    <div class="radio" id="la">
+                        <label>
+                            <input type="radio"> No
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="add">Add New Field:</label>
+                    <div class="container-fluid pull-right">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </div><br>
+                    <select id="add" class="form-control">
+                        <option>Single Line Text</option>
+                        <option>Date</option>
+                        <option>Dropdown</option>
+                        <option>Checkboxes</option>
+                        <option>Radio Buttons</option>
+                        <option>Paragraph Text</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

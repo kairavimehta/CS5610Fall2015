@@ -1,0 +1,76 @@
+<!-- this is an example of showing the grid system using css where responsiveness is lost-->
+<html>
+<head>
+    <title>grid display</title>
+    <style>
+        .container{
+            <!-- width of the text. default is the size of the window. the text is resized based on the size of the window-->
+            <!-- the text is not resized when width is mentioned -->
+            width: 960px;
+            <!-- margin to be left from the right and left side-->
+            margin:auto;
+            /*
+            background-color:red;
+            padding: 50px;
+            border: 20px dotted black;
+            */
+        }
+        .col1{
+            width:80px; float:left;}
+        .col2{
+            width:160px; float: left;}
+        .col3{
+            width:240px; float: left;}
+        .col6{
+            width: 480px; float: left;}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col3">
+                <h2>col1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+            <div class="col3">
+                <h2>col2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+            <div class="col3">
+                <h2>col3</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+            <div class="col2">
+                <h2>col4</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+            <div class="col1">
+                <h2>col5</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col6">
+                <h1>Rows</h1>
+                <h2>Columns1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+
+            </div>
+            <div class="col6">
+                <h1>Rows</h1>
+                <h2>Columns2</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+
+            </div>
+        </div>
+
+        <h1>Forms</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+    </div>
+</body>
+</html>

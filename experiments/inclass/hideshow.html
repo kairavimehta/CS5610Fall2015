@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>At Media Rules</title>
+    <style>
+        .show-lg{display:none;}
+        .show-mg{display:none;}
+        .show-sm{display:none;}
+        .show-xs{display:block;}
+
+        .hide-lg{display:block;}
+        .hide-mg{display:block;}
+        .hide-sm {display:block;}
+        .hide-xs{display:none;}
+
+
+        .row
+        {
+            clear: both;
+        }
+
+        @media screen and (min-width: 960px)
+        {
+            .container
+                {
+                width: 960px;
+                margin: auto;
+                }
+            .col1 {width:80px; float:left;}
+            .col2 {width:160px; float: left;}
+            .col3 {width:240px; float: left;}
+            .col6 {width: 480px; float: left;}
+            .col12 {width: 960px; float: left;}
+
+        .hide-lg{display:none;}
+        .hide-mg{display:block;}
+        .hide-sm {display:block;}
+        .hide-xs{display:block;}
+
+        .show-lg{display:block;}
+        .show-mg{display:none;}
+        .show-sm{display:none;}
+        .show-xs{display:none;}
+
+
+
+        }
+
+        @media screen and (min-width: 700px) and (max-width:960px)
+        {
+            .container
+                {
+                width: 700 px;
+                margin: auto;
+                }
+            .col1 { width: 58 px; float:left;}
+            .col2 {width: 116 px; float: left;}
+            .col3 {width: 175 px; float: left;}
+            .col6 {width: 350 px; float: left;}
+            .col12 {width: 700px; float: left;}
+
+        .hide-mg{display:none;}
+
+        .show-lg{display:none;}
+        .show-mg{display:block;}
+        .show-sm{display:none;}
+        .show-xs{display:none;}
+
+        .hide-lg{display:block;}
+        .hide-mg{display:none;}
+        .hide-sm {display:block;}
+        .hide-xs{display:block;}
+
+        }
+
+        @media screen and (min-width: 500px) and (max-width:700px)
+        {
+            .container
+                {
+                width: 500 px;
+                margin: auto;
+                }
+            .col1 {width: 41 px; float:left;}
+            .col2 {width: 83 px; float: left;}
+            .col3 {width: 125 px; float: left;}
+            .col6 {width: 250 px; float: left;}
+            .col12 {width: 500px; float: left;}
+
+        .hide-lg{display:block;}
+        .hide-mg{display:block;}
+        .hide-sm {display:none;}
+        .hide-xs{display:block;}
+
+        .show-lg{display:none;}
+        .show-mg{display:none;}
+        .show-sm{display:block;}
+        .show-xs{display:none;}
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="col1">Hello</h1>
+    <h1 class="show-sm">Small</h1>
+    <h1 class="show-lg">Large</h1>
+    <h1 class="show-mg">Medium</h1>
+    <h1 class="show-xs">Extra Small</h1>
+
+    <nav class="show-mg">
+        <a href="#">HOME</a>
+        <a href="#">LOGIN</a>
+        <a href="#">REGISTER</a>
+        <a href="#">PROFILE</a>
+    </nav>
+
+    <div class="row">
+        <div class="col2">
+            <nav class="hide-sm">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="#">REGISTER</a></li>
+                    <li><a href="#">PROFILE</a></li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="col6">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col3">
+            <h2>col1</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>        </div>
+        <div class="col3">
+            <h2>col2</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>        </div>
+        <div class="col3">
+            <h2>col3</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>        </div>
+        <div class="col2">
+            <h2>col4</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>        </div>
+        <div class="col1">
+            <h2>col5</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>        </div>
+    </div>
+    <div class="row">
+        <div class="col12">
+            <h1> At Media</h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
