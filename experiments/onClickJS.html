@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>
+        Click Events
+    </title>
+    <script>
+        function sayHello()
+        {
+            alert("Hello World");
+        }
+        function sayMessage(msg)
+        {
+            alert(msg);
+        }
+        function sayInput()
+        {
+            var msg = document.getElementById("message").value;
+            alert(msg)
+        }
+    </script>
+</head>
+<body>
+<h1>
+    On click event handling
+</h1>
+<button onClick="sayHello()">Say Hello</button>
+<button onClick="sayMessage('This is the message')">
+    Say Message</button>
+<input id="message" type="text"/>
+<button onClick="sayInput()">
+    Say Input</button>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>
+        JSON
+    </title>
+</head>
+<body>
+<h1>JSON : JavaScript Object Notation</h1>
+<script>
+    //properties of the alice object
+    var alice = {
+        "firstName": "Alice",
+        "lastName": "Wonderland",
+        "salary":123456
+    };
+    console.log(alice);
+    var department = {
+        "name":"Compute Science",
+        "director":{
+            "firstName":"Bob",
+            lastName:"Marley"},
+        dean: alice,
+        courses:[
+            {title:"CS5610"},
+            {title:"CS5200"}]};
+    console.log(department);
+    var str = JSON.stringify(department);
+    console.log(str);
+    var dptStr = '{"name":"Compute Science","director":{"firstName":"Bob","lastName":"Marley"},"dean":{"firstName":"Alice","lastName":"Wonderland","salary":123456},"courses":[{"title":"CS5610"},{"title":"CS5200"}]}'
+    var deptObj = JSON.parse(dptStr);
+    console.log(deptObj);
+</script>
+</body>
+</html>

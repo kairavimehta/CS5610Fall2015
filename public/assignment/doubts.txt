@@ -1,5 +1,0 @@
-side bar links are not getting highlighted even when i use class="active"
-how to make forms page interactive (no table then display table when click on forms tab)
-form and field have to be tabs or can be buttons
-does everything have to look exactly like how it looks in the moqups?
-do the forms and forms-field need to have a border around the table and data?
