@@ -1,0 +1,26 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="ajax-imdb.js"></script>
+    <title>IMBD Movies</title>
+</head>
+<body>
+<div class="container">
+    <h1>Search IMDB</h1>
+    <a href="http://www.myapifilms.com/imdb?name=Titanic&format=JSON&filmography=0&limit=3&lang=en-us&exactFilter=0&bornDied=0&starSign=0&uniqueName=0&actorActress=0&actorTrivia=0&actorPhotos=N&actorVideos=N&salary=0&spouses=0&tradeMark=0&personalQuotes=0&starMeter=0">Search Titanic</a>
+    <input type="text" id="movieTitle" class="form-control" placeholder="titanic">
+    <button id="searchMovie" class="btn btn-primary btn-block">Search</button>
+    <table class="table table-stripped">
+        <h2>Results</h2>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th></th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+</body>
+</html>
