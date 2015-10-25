@@ -1,4 +1,5 @@
-(function(){
+'use strict';
+(function () {
     angular
         .module("FormBuilderApp")
         .config(Configure);
@@ -10,20 +11,20 @@
             })
             .when("/login", {
                 templateUrl: "login/login.view.html",
-                controller:"login/login.controller.js"
+                controller:"LoginController"
             })
             .when("/register",{
                 templateUrl: "register/register.view.html",
-                controller: "register/register.controller.js"
+                controller: "RegisterController"
             })
             
             .when("/profile",{
                 templateUrl: "profile/profile.view.html",
-                controller: "profile/profile.controller.js"
+                controller: "ProfileController"
             })
-            .when("/forms",{
+            .when("/form",{
                 templateUrl: "form/form.view.html",
-                controller: "form/form.controller.js"
+                controller: "FormController"
             })
             .otherwise({
                 redirectTo: "/home"
