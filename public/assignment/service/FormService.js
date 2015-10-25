@@ -1,25 +1,23 @@
 'use strict';
 (function () {
     angular
-        .module("FormBuilderApp")
-        .factory("FormService", FormService)
+        .module('FormBuilderApp')
+        .factory('FormService', FormService);
 
     function FormService() {
         var forms = [];
-
         var service = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById,
-            guid: guid
-        };
+        }
         return service;
 
-        function createFormForUser(uid, form, callback) {
-            form.fid = guid();
-            forms.push(form);
-            callback(form);
+        function createFormForUser(uid, newForm, callback){
+            newForm.id = guid();
+            forms.push(newForm);
+            callback(newForm);
         }
 
         function guid() {
@@ -32,14 +30,14 @@
               s4() + '-' + s4() + s4() + s4();
         }
 
-        function findAllFormsForUser(uid, callback) {
-            var userForms = [];
-            for (var form in forms) {
-                if (form.uid == uid) {
-                    userForms.push(form);
+        function findAllFormsForUser(uid,callback){
+            var formsForUser = [];
+            for(var form in forms){
+                if(form.uid == uid){
+                    formsForUser.push(form);
                 }
             }
-            callback(userForms);
+            callback(formsForUser);
         }
 
         function deleteFormById(fid, callback) {
@@ -51,16 +49,13 @@
             callback(forms);
         }
 
-        function updateFormById(fid, newForm, callback) {
-            var updatedForm = null;
-            for (var form in forms) {
-                if (form.fid == fid) {
-                    form.uid = newForm.uid;
-                    form.formName = newForm.formName;
-                    updatedForm = form;
+        function updateFormById(fid, newForm, callback){
+            for (var i = 0; i < forms.length; i++){
+                if(forms[i].fid == fid){
+                    forms[i].formName = newForm.formName;
                 }
             }
-            callback(updatedForm);
         }
+
     }
 })();

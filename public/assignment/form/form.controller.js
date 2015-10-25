@@ -22,6 +22,7 @@
                 });
             }
         }
+
         var selectedForm = {};
 
         $scope.selectForm = function (index) {

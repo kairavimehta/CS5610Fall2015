@@ -14,7 +14,6 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            Guid: Guid
         };
         return service;
 
