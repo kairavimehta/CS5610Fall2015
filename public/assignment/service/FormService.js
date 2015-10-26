@@ -6,6 +6,7 @@
 
     function FormService() {
         var forms = [];
+
         var service = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
@@ -15,7 +16,7 @@
         return service;
 
         function createFormForUser(uid, newForm, callback){
-            newForm.id = guid();
+            newForm.fid = guid();
             forms.push(newForm);
             callback(newForm);
         }
@@ -32,9 +33,9 @@
 
         function findAllFormsForUser(uid,callback){
             var formsForUser = [];
-            for(var form in forms){
-                if(form.uid == uid){
-                    formsForUser.push(form);
+            for(var f in forms){
+                if(forms[f].uid == uid){
+                    formsForUser.push(forms[f]);
                 }
             }
             callback(formsForUser);
@@ -44,15 +45,18 @@
             for (var i = 0; i < forms.length; i++) {
                 if (forms[i].fid == fid) {
                     forms.splice(i, 1);
+                    break;
                 }
             }
             callback(forms);
         }
 
         function updateFormById(fid, newForm, callback){
-            for (var i = 0; i < forms.length; i++){
+            for (var i = 0; i < forms.length; i++) {
+
                 if(forms[i].fid == fid){
                     forms[i].formName = newForm.formName;
+                    callback(forms[i]);
                 }
             }
         }

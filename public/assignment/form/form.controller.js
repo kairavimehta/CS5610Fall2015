@@ -5,20 +5,22 @@
         .controller('FormController', FormController);
 
     function FormController(FormService, $scope, $rootScope) {
-        $scope.selectedForm = null;
+
         if ($rootScope.user != null) {
             FormService.findAllFormsForUser($rootScope.user.uid, function (userForms) {
                 $scope.forms = userForms;
             });
         }
+
         $scope.addForm = function (formName) {
             var newForm = {
-                uid: $rootScope.user.id,
+                uid: $rootScope.user.uid,
                 formName: formName
             };
             if ($rootScope.user != null) {
                 FormService.createFormForUser($rootScope.user.uid, newForm, function (newform) {
                     $scope.forms.push(newform);
+                    $scope.formName = "";
                 });
             }
         }
@@ -31,13 +33,18 @@
         }
 
         $scope.deleteForm = function (index) {
-            var formid = $scope.forms[index].fid;
-            FormService.deleteFormById(formid, function (newforms) {
-                $scope.forms = newforms;
+            console.log(index);
+            console.log($scope.forms[index]);
+            FormService.deleteFormById($scope.forms[index].fid, function () {
+                FormService.findAllFormsForUser($rootScope.user.uid, function (newforms) {
+                    $scope.forms = newforms;
+                });
             });
+            
+            console.log($scope.forms);
         }
 
-        $scope.updateForm = function (name) {
+        $scope.updateForm = function (index, name) {
             var newForm = {
                 fid: selectedForm.fid,
                 formName: name,
@@ -46,8 +53,9 @@
             FormService.updateFormById(selectedForm.fid, newForm, function (f) {
                 if ($rootScope.user != null) {
                     FormService.findAllFormsForUser($rootScope.user.id, function (forms) {
-                        $scope.forms = forms;
+                        $scope.forms[index] = f;
                     });
+                    $scope.formName = "";
                 }
             });
         }
