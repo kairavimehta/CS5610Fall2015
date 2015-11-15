@@ -4,21 +4,20 @@
         .module('FormBuilderApp')
         .controller('RegisterController', RegisterController);
 
-    function RegisterController(UserService, $scope, $rootScope, $location) {
-        $scope.register = function () {
-            if ($scope.pwd != $scope.vpwd) {
-                return;
-            }
+    function RegisterController(UserService, $rootScope, $location) {
+        var model = this;
+        model.register = register;
+        function register(username,password,email) {
             var createUser = {
-                uname: $scope.uname,
-                pwd: $scope.pwd,
-                email: $scope.email
-            }
-            UserService.createUser(createUser, function (user) {
-                $rootScope.user = user;
-                $location.url('/profile');
-            });
+                username: username,
+                password: password,
+                email: email
+            };
+            UserService.createUser(createUser)
+                .then(function (user) {
+                    $rootScope.user = user;
+                    $location.url('/profile');
+                })
         }
     }
 })();
-
