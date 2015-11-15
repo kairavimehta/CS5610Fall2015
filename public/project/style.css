@@ -1,19 +1,55 @@
-﻿#imgtag{
+﻿body {
+    background-image: url("background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.navHeader {
+    font-size:40px;
+    color:dimgray;
+    font-weight:bold;
+}
+
+.divider {
+    font-size:30px;
+    color:dimgray;
+    font-weight:bold;
+}
+
+.title {
+    font-size: 15px;
+    font-weight:bold;
+}
+
+.subnav {
+    font-size:20px;
+    font-weight:bold;
+    color: red;
+}
+
+#subheading {
+    color:red;
+    font-family:'Monotype Corsiva';
+    font-size:30px;
+}
+
+.descimg {
+    width:350px;
+    height:250px;
+    outline-style:groove;
+}
+
+.imgtag{
     font-size:40px;
     font-style:italic;
     font-family:'Monotype Corsiva';
     font-weight:bold;
     color:red;
-    align-content:center;
 }
 
-#imgdesc{
-    font-size:25px;
-    font-style:italic;
-    font-family:'Monotype Corsiva';
-    font-weight:bold;
+.imgdesc{
+    font-size:20px;
     color:black;
-    align-content:center;
 }
 
 #last {
@@ -25,41 +61,10 @@
     align-content:center;
 }
 
-.title {
-    font-size: 25px;
-    font-weight:bold;
-}
-
-.profilenav {
-    font-size: 25px;
-    font-weight:bold;
-    color:black;
-}
-
-.header {
-    font-size:30px;
-    font-weight:bold;
-    color:white;
-}
-
-body {
-    background-image: url("background.jpg");
-    background-repeat: no-repeat;
-    background-size:cover;
-}
-
-.divider {
-    font-size:30px;
-    font-weight:bold;
-    color:red;
-}
-
-p {
-    font-size:40px;
-    font-style:italic;
-    font-weight:bold;
-    color:red;
-    align-content:center;
+.profile {
+    width:100px;
+    height:100px;
+    outline-style:groove;
 }
 
 .posts {
@@ -68,45 +73,24 @@ p {
     font-family:'Monotype Corsiva';
 }
 
-.messages {
-    font-size:15px;
-    color:black;
-}
-
-.networkname {
-    font-size:20px;
-    color:crimson;
-}
-
-#subheading{
-    font-size:50px;
-    font-style:italic;
-    font-weight:bold;
-    color:red;
-    font-family:'Monotype Corsiva';
-    align-content:center;
-}
-
-.descimg {
-    width:350px;
-    height:250px;
-    outline-style:groove;
-}
-
-.profile {
-    width:100px;
-    height:100px;
-    outline-style:groove;
-}
-
 .messagepic {
     width:75px;
     height:75px;
     outline-style:groove;
 }
 
+.messages {
+    font-size:15px;
+    color:black;
+}
+
 .networkimg {
     width:75px;
     height:75px;
     outline-style:groove;
+}
+
+.networkname {
+    font-size:20px;
+    color:crimson;
 }

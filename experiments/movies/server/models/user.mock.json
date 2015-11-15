@@ -1,0 +1,17 @@
+﻿[
+  {
+    "id": 123,
+    "first": "Alice",
+    "last": "wonderland",
+    "username": "alice",
+    "password": "alice"
+  },
+  {
+    "id": 234,
+    "first": "Bob",
+    "last": "marley",
+    "username": "bob",
+    "password": "bob"
+  }
+
+]
