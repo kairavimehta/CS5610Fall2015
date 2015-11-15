@@ -2,18 +2,16 @@
     angular
         .module("FormBuilderApp")
         .factory("FieldService", FieldService);
-
     function FieldService($http, $q) {
         var api = {
-            createFieldForForm: createFieldForForm,
-            getFieldsForForm: getFieldsForForm,
-            getFieldForForm: getFieldForForm,
-            deleteFieldFromForm: deleteFieldFromForm,
+            createFieldForForm: createField,
+            getFieldsForForm: getFields,
+            getFieldForForm: getField,
+            deleteFieldFromForm: deleteField,
             updateField: updateField
         };
         return api;
-
-        function createFieldForForm(fid,field){
+        function createField(fid, field) {
             var deferred = $q.defer();
             $http.post("/api/assignment/form/"+fid+"/field",field)
                 .success(function(response){
@@ -21,8 +19,7 @@
                 });
             return deferred.promise;
         }
-
-        function getFieldsForForm(fid){
+        function getFields(fid) {
             var deferred = $q.defer();
             $http.get("/api/assignment/form/"+fid+"/field")
                 .success(function(response){
@@ -30,8 +27,7 @@
                 });
             return deferred.promise;
         }
-
-        function getFieldForForm(fid, fieldId){
+        function getField(fid, fieldId) {
             var deferred = $q.defer();
             $http.get("/api/assignment/form"+fid+"/field/"+fieldId)
                 .success(function(response){
@@ -39,7 +35,7 @@
                 });
             return deferred.promise;
         }
-        function deleteFieldFromForm(fid, fieldId) {
+        function deleteField(fid, fieldId) {
             var deferred = $q.defer();
             $http.delete("/api/assignment/form/" + fid + "/field/" + fieldId)
                 .success(function (response) {

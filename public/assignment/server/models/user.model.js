@@ -50,9 +50,9 @@ module.exports = function () {
         }
         return null;
     }
-    function findUserByCredentials(credentials) {
+    function findUserByCredentials(login) {
         for (var i = 0; i < users.length; i++) {
-            if (users[i].username == credentials["username"] && users[i].password == credentials["password"]) {
+            if (users[i].username == login["username"] && users[i].password == login["password"]) {
                 return users[i];
             }
         }

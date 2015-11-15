@@ -10,7 +10,7 @@
     </div>
 </nav>
 
-<div class="col-sm-9 col-md-10" data-ng-init="init()">
+<div class="col-sm-9 col-md-10" ng-init="init()">
     <form class="form-horizontal">
         <div ng-repeat="field in model.fields">
             <ng-switch on="field.type" ng-model="field.type">

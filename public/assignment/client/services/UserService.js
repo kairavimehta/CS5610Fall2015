@@ -5,14 +5,14 @@
         .factory("UserService", UserService);
     function UserService($http,$q) {
         var service = {
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
-            findAllUsers: findAllUsers,
+            findUserByUsernameAndPassword: findByUsernameAndPassword,
+            findAllUsers: findAll,
             createUser: createUser,
-            deleteUserById: deleteUserById,
+            deleteUserById: deleteById,
             updateUser: updateUser,
         };
         return service;
-        function findUserByUsernameAndPassword(uname, pwd) {
+        function findByUsernameAndPassword(uname, pwd) {
             var deferred = $q.defer();
             $http.get("/api/assignment/user?username="+uname+"&password="+pwd)
                 .success(function (response) {
@@ -20,7 +20,7 @@
                 });
             return deferred.promise;
         }
-        function findAllUsers() {
+        function findAll() {
             var deferred = $q.defer();
             $http.get("/api/assignment/user")
                 .success(function (response) {
@@ -29,7 +29,7 @@
             return deferred.promise;
         }
         function createUser(user, callback) {
-            user.uid = Guid();
+            user.uid = guid();
             var deferred = $q.defer();
             $http.post("/api/assignment/user", user)
                 .success(function (response) {
@@ -37,7 +37,16 @@
                 });
             return deferred.promise;
         }
-        function deleteUserById(uid) {
+        function guid() {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                  .toString(16)
+                  .substring(1);
+            }
+            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+              s4() + '-' + s4() + s4() + s4();
+        }
+        function deleteById(uid) {
             var deferred = $q.defer();
             $http.delete("/api/assignment/user/" + uid)
                 .success(function (response) {
@@ -52,15 +61,6 @@
                     deferred.resolve(response);
                 });
             return deferred.promise;
-        }
-        function Guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                  .toString(16)
-                  .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-              s4() + '-' + s4() + s4() + s4();
         }
     }
 })();

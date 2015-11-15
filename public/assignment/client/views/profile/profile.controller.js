@@ -3,7 +3,6 @@
     angular
         .module('FormBuilderApp')
         .controller('ProfileController', ProfileController);
-
     function ProfileController(UserService, $rootScope) {
         var model = this;
         model.update = update;
@@ -15,13 +14,16 @@
             model.firstNameModel = currUser.firstName;
             model.lastNameModel = currUser.lastName;
         }
-        function update (username,password,firstName,lastName,email) {
+        function update (uname,pwd,fname,lname,email) {
+            var updatedUser={"id": currUser.id,"username": uname,"password":pwd,"firstName":fname,"lastName":lname,"email":email};
+
             if (currUser != null) {
-                UserService.updateUser(currUser.id, currUser)
-                    .then(function (updatedUser) {
-                        $rootScope.user = updatedUser;
+                UserService.updateUser(currUser.id, updatedUser)
+                    .then(function (updateUser) {
+                        $rootScope.user = updateUser;
                     });
             }
+            alert("Update Successful");
         }
     }
 })();

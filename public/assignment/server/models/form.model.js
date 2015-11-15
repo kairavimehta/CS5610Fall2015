@@ -6,9 +6,9 @@ module.exports = function () {
         findAll: findAll,
         updateForm: updateForm,
         deleteForm: deleteForm,
-        findFormByTitle: findFormByTitle,
-        findFieldById: findFieldById,
-        deleteFieldById: deleteFieldById,
+        findFormByTitle: findForm,
+        findFieldById: findField,
+        deleteFieldById: deleteField,
         createField: createField,
         updateField: updateField
     }
@@ -35,14 +35,6 @@ module.exports = function () {
         }
         return userForms;
     }
-    function findFormByTitle(name) {
-        for (var i = 0; i < forms.length; i++) {
-            if (forms[i].title == name) {
-                return forms[i];
-            }
-        }
-        return null;
-    }
     function updateForm(id, form) {
         var uid = form.userId;
         for (var i = 0; i < forms.length; i++) {
@@ -62,7 +54,15 @@ module.exports = function () {
         }
         return findAll(uid);
     }
-    function findFieldById(fieldId, form) {
+    function findForm(name) {
+        for (var i = 0; i < forms.length; i++) {
+            if (forms[i].title == name) {
+                return forms[i];
+            }
+        }
+        return null;
+    }
+    function findField(fieldId, form) {
         for (var i = 0; i < form.fields.length; i++) {
             if (form.fields[i].id == fieldId) {
                 return form.fields[i];
@@ -70,7 +70,7 @@ module.exports = function () {
         }
         return null;
     }
-    function deleteFieldById(fieldId, form) {
+    function deleteField(fieldId, form) {
         for (var i = 0; i < form.fields.length; i++) {
             if (form.fields[i].id == fieldId) {
                 form.fields.splice(i, 1);

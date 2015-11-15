@@ -11,26 +11,26 @@ module.exports = function (app) {
     }
     function findAll(req, res) {
         var modelResponse;
-        var username = req.query.username;
-        var password = req.query.password;
-        if (username != undefined && password != undefined) {
-            modelResponse = findUserByCredentials(username, password);
+        var uname = req.query.username;
+        var pwd = req.query.password;
+        if (uname != undefined && pwd != undefined) {
+            modelResponse = findUserByCredentials(uname, pwd);
         }
-        else if (username != undefined) {
-            modelResponse = findUserByUsername(username);
+        else if (uname != undefined) {
+            modelResponse = findUserByUsername(uname);
         }
         else {
             modelResponse = model.findAll();
         }
         res.json(modelResponse);
     }
-    function findUserByUsername(username) {
+    function findUserByUsername(uname) {
         return model.findUserByUsername;
     }
-    function findUserByCredentials(username, password) {
+    function findUserByCredentials(uname, pwd) {
         var credentials = {
-            "username": username,
-            "password": password
+            "username": uname,
+            "password": pwd
         };
         return model.findUserByCredentials(credentials);
     }

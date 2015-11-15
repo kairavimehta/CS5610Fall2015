@@ -9,17 +9,16 @@
         model.removeField = removeField;
         model.fields = [];
         function init() {
-            var formId = $routeParams.formId;
-            var userId = $routeParams.userId;
-            FieldService.getFieldsForForm(formId)
+            var fid = $routeParams.formId;
+            FieldService.getFieldsForForm(fid)
                 .then(function (fieldsForForm) {
                     model.fields = fieldsForForm;
                 });
         }
         init();
         function addField(fieldType) {
-            var formId = $routeParams.formId;
-            var userId = $routeParams.userId;
+            var fid = $routeParams.formId;
+            //var uid = $routeParams.userId;
             var newField;
             if(fieldType == "Single Line Text Field"){
                 newField = {"id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
@@ -55,15 +54,14 @@
             if (newField != undefined){
                 allFields.push(newField);
             }
-            FieldService.createFieldForForm(formId,newField)
+            FieldService.createFieldForForm(fid,newField)
                 .then(function(formFields){
                     model.fields = formFields;
                 });
         }
         function removeField(fieldId){
-            var formId = $routeParams.formId;
-            var userId = $routeParams.userId;
-            FieldService.deleteFieldFromForm(formId,fieldId)
+            var fid = $routeParams.formId;
+            FieldService.deleteFieldFromForm(fid,fieldId)
                 .then(function(restFields){
                     model.fields = restFields;
                 });

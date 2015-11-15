@@ -17,12 +17,7 @@
         }
         function addForm (formName) {
             if ($rootScope.user != null) {
-                var newForm = {
-                    id: "",
-                    userId: "",
-                    title: formName,
-                    fields: []
-                };
+                var newForm = {id: "",userId: "",title: formName,fields: []};
                 FormService.createFormForUser($rootScope.user.id, newForm)
                     .then(function (allForms) {
                         model.forms = allForms;

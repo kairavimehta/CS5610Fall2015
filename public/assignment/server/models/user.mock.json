@@ -6,7 +6,6 @@
     "username": "alice",
     "password": "alice"
   },
-
   {
     "id": 234,
     "firstName": "Bob",
@@ -14,7 +13,6 @@
     "username": "bob",
     "password": "bob"
   },
-
   {
     "id": 345,
     "firstName": "Charlie",
@@ -22,7 +20,6 @@
     "username": "charlie",
     "password": "charlie"
   },
-
   {
     "id": 456,
     "firstName": "Dan",
@@ -30,7 +27,6 @@
     "username": "dan",
     "password": "dan"
   },
-
   {
     "id": 567,
     "firstName": "Edward",
@@ -38,5 +34,4 @@
     "username": "ed",
     "password": "ed"
   }
-
 ]

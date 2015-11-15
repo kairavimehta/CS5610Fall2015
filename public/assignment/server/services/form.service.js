@@ -6,27 +6,27 @@ module.exports = function (app) {
     app.put('/api/assignment/form/:formId', updateForm);
     app.delete('/api/assignment/form/:formId', deleteForm);
     function createForm(req, res) {
-        var userId = req.params.userId;
+        var uid = req.params.userId;
         var newForm = req.body;
-        res.json(model.createForm(userId, newForm));
+        res.json(model.createForm(uid, newForm));
     }
     function findById(req, res) {
-        var id = req.params.formId;
-        res.json(model.findById(id));
+        var fid = req.params.formId;
+        res.json(model.findById(fid));
     }
     function findAll(req, res) {
         var response;
-        var usedId = req.params.userId;
-        res.json(model.findAll(usedId));
+        var uid = req.params.userId;
+        res.json(model.findAll(uid));
     }
     function updateForm(req, res) {
-        var id = req.params.formId;
+        var fid = req.params.formId;
         var form = req.body;
-        res.json(model.updateForm(id, form));
+        res.json(model.updateForm(fid, form));
     }
     function deleteForm(req, res) {
-        var id = req.params.formId;
-        res.json(model.deleteForm(id));
+        var fid = req.params.formId;
+        res.json(model.deleteForm(fid));
     }
 
 }

@@ -5,4 +5,4 @@
         .run(function ($rootScope) {
             $rootScope.user = {};
         });
-})();
+})(); 

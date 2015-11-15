@@ -5,13 +5,13 @@
     .factory("FormService", FormServiceFunction);
     function FormServiceFunction($http, $q) {
         var service = {
-            createFormForUser: createFormForUser,
-            findAllFormsForUser: findAllFormsForUser,
-            deleteFormById: deleteFormById,
-            updateFormById: updateFormById
-        }
+            createFormForUser: createForm,
+            findAllFormsForUser: findForUser,
+            deleteFormById: deleteById,
+            updateFormById: updateById
+        };
         return service;
-        function createFormForUser(uid, newForm) {
+        function createForm(uid, newForm) {
             newForm.id = guid();
             var deferred = $q.defer();
             $http.post('/api/assignment/user/'+uid+'/form', newForm)
@@ -29,7 +29,7 @@
             return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
                 s4() + '-' + s4() + s4() + s4();
         }
-        function findAllFormsForUser(uid) {
+        function findForUser(uid) {
             var deferred = $q.defer();
             $http.get('/api/assignment/user/'+uid+'/form')
             .success(function (response) {
@@ -37,7 +37,7 @@
             });
             return deferred.promise;
         }
-        function deleteFormById(fid) {
+        function deleteById(fid) {
             var deferred = $q.defer();
             $http.delete('/api/assignment/form/'+fid)
             .success(function (response) {
@@ -45,7 +45,7 @@
             });
             return deferred.promise;
         }
-        function updateFormById(fid, newForm) {
+        function updateById(fid, newForm) {
             var deferred = $q.defer();
             $http.put('/api/assignment/form/'+fid, newForm)
             .success(function (response) {
