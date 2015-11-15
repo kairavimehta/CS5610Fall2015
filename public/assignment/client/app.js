@@ -2,7 +2,7 @@
 (function () {
     angular
         .module("FormBuilderApp", ["ngRoute"])
-        .run(function ($rootscope) {
-            $rootscope.user = {};
+        .run(function ($rootScope) {
+            $rootScope.user = {};
         });
 })();

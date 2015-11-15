@@ -10,10 +10,6 @@ module.exports = function (app) {
         res.json(model.createUser(newUser));
     }
     function findAll(req, res) {
-        var id = req.params.id;
-        res.json(model.findById(id));
-    }
-    function findAll(req, res) {
         var modelResponse;
         var username = req.query.username;
         var password = req.query.password;
@@ -37,6 +33,10 @@ module.exports = function (app) {
             "password": password
         };
         return model.findUserByCredentials(credentials);
+    }
+    function findById(req, res) {
+        var id = req.params.id;
+        res.json(model.findById(id));
     }
     function updateUser(req, res) {
         var id = req.params.id;

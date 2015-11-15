@@ -41,7 +41,7 @@
             selectedForm = model.forms[index];
         }
 
-        function deleteForm (index) {
+        function removeFrom(index) {
             FormService.deleteFormById(model.forms[index].id)
                 .then(function (restForms) {
                     model.forms = restForms
