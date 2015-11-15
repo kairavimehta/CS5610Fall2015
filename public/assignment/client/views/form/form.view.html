@@ -35,9 +35,9 @@
     </thead>
     <tbody>
         <tr ng-repeat="form in model.forms">
-            <td><a href="#user/{{model.userid}}/form/{{form.id}}/fields">{{form.title}}</a></td>
+            <td><a href="#user/{{form.userId}}/form/{{form.id}}/fields">{{form.title}}</a></td>
             <td>
-                <button ng-click="model.deleteForm($index)" class="btn btn-default btn-danger">
+                <button ng-click="model.removeForm($index)" class="btn btn-default btn-danger">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
                 <button ng-click="model.selectForm($index)" class="btn btn-default btn-warning">

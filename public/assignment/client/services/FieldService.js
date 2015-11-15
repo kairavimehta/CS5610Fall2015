@@ -24,7 +24,7 @@
 
         function getFieldsForForm(fid){
             var deferred = $q.defer();
-            $http.get("/api/assignment/form"+fid+"/field")
+            $http.get("/api/assignment/form/"+fid+"/field")
                 .success(function(response){
                     deferred.resolve(response);
                 });
@@ -39,16 +39,14 @@
                 });
             return deferred.promise;
         }
-
-        function deleteFieldFromForm(fid,fieldId){
+        function deleteFieldFromForm(fid, fieldId) {
             var deferred = $q.defer();
-            $http.delete("/api/assignment/form"+fid+"/field/"+fieldId)
-                .success(function(response){
+            $http.delete("/api/assignment/form/" + fid + "/field/" + fieldId)
+                .success(function (response) {
                     deferred.resolve(response);
                 });
             return deferred.promise;
         }
-
         function updateField(fid,fieldId,field){
             var deferred = $q.defer();
             $http.put("/api/assignment/form"+fid+"/field/"+fieldId,field)

@@ -3,7 +3,6 @@
     angular
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
-
     function FieldController(FieldService, $routeParams) {
         var model = this;
         model.addField = addField;
@@ -17,7 +16,7 @@
                     model.fields = fieldsForForm;
                 });
         }
-
+        init();
         function addField(fieldType) {
             var formId = $routeParams.formId;
             var userId = $routeParams.userId;
@@ -61,11 +60,9 @@
                     model.fields = formFields;
                 });
         }
-
         function removeField(fieldId){
             var formId = $routeParams.formId;
             var userId = $routeParams.userId;
-
             FieldService.deleteFieldFromForm(formId,fieldId)
                 .then(function(restFields){
                     model.fields = restFields;
