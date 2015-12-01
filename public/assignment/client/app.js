@@ -1,8 +1,5 @@
-'use strict';
-(function () {
+﻿(function () {
     angular
-        .module("FormBuilderApp", ["ngRoute"])
-        .run(function ($rootScope) {
-            $rootScope.user = {};
-        });
-})(); 
+        .module("FormBuilderApp", ["ngRoute"]);
+
+})();

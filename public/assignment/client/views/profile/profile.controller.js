@@ -1,29 +1,41 @@
-'use strict';
+﻿'use strict';
 (function () {
     angular
-        .module('FormBuilderApp')
-        .controller('ProfileController', ProfileController);
-    function ProfileController(UserService, $rootScope) {
+        .module("FormBuilderApp")
+        .controller("ProfileController", ProfileController);
+
+    function ProfileController($location, UserService, $rootScope) {
         var model = this;
         model.update = update;
-        var currUser = $rootScope.user;
-        if (currUser != null) {
-            model.usernameModel = currUser.username;
-            model.passwordModel = currUser.password;
-            model.emailModel = currUser.email;
-            model.firstNameModel = currUser.firstName;
-            model.lastNameModel = currUser.lastName;
-        }
-        function update (uname,pwd,fname,lname,email) {
-            var updatedUser={"id": currUser.id,"username": uname,"password":pwd,"firstName":fname,"lastName":lname,"email":email};
 
-            if (currUser != null) {
-                UserService.updateUser(currUser.id, updatedUser)
-                    .then(function (updateUser) {
-                        $rootScope.user = updateUser;
+        if ($rootScope.user != null) {
+            var currUser = $rootScope.user;
+            model.uname = currUser.userName;
+            model.pwd = currUser.password;
+            model.fname = currUser.firstName;
+            model.lname = currUser.lastName;
+            model.email = currUser.email;
+        }
+        function update(uname, pwd, fname, lname, email) {
+            if ($rootScope.user != null) {
+                var currUser = $rootScope.user;
+                var updatedUser = {
+                    userName: uname,
+                    password: pwd,
+                    firstName: fname,
+                    lastName: lname,
+                    email: email
+                }
+                UserService.updateUser(currUser._id, updatedUser)
+                    .then(function (newUser) {
+                        uname = updatedUser.userName;
+                        pwd = updatedUser.password;
+                        email = updatedUser.email;
+                        fname = updatedUser.firstName;
+                        lname = updatedUser.lastName;
+                        alert("Profile Updated");
                     });
             }
-            alert("Update Successful");
         }
     }
 })();

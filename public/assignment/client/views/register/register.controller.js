@@ -1,22 +1,24 @@
-'use strict';
+﻿'use strict';
 (function () {
     angular
-        .module('FormBuilderApp')
-        .controller('RegisterController', RegisterController);
+        .module("FormBuilderApp")
+        .controller("RegisterController", RegisterController);
+
     function RegisterController(UserService, $rootScope, $location) {
         var model = this;
         model.register = register;
-        function register(uname,pwd,email) {
-            var createUser = {
-                username: uname,
+
+        function register (uname,pwd,vpwd,email) {
+            var newUser = {
+                userName: uname,
                 password: pwd,
                 email: email
-            };
-            UserService.createUser(createUser)
+            }
+            UserService.createUser(newUser)
                 .then(function (user) {
                     $rootScope.user = user;
-                    $location.url('/profile');
-                })
+                    $location.path("/profile");
+                });
         }
     }
 })();

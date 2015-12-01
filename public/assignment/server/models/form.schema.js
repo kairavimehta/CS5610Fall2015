@@ -1,0 +1,18 @@
+﻿var mongoose = require('mongoose');
+objectId = mongoose.Schema.Types.ObjectId,
+
+module.exports = mongoose.Schema({
+    "title": {type: String},
+    "idForUser": {type: String},
+    "fields": [{
+        "id": {type: objectId},
+        "label": {type: String},
+        "type": {type: String},
+        "options": [{
+            "label": String,
+            "value": String,
+        }],
+        "placeholder": {type: String}
+    }]
+},
+{ collection: 'test.forms3' });

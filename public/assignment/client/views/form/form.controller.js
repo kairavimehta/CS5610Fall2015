@@ -1,49 +1,62 @@
-'use strict';
+﻿'use strict';
 (function () {
     angular
-        .module('FormBuilderApp')
-        .controller('FormController', FormController);
-    function FormController(FormService, $rootScope) {
+    .module("FormBuilderApp")
+    .controller("FormController", FormController);
+
+    function FormController(FormService, $rootScope, $location) {
         var model = this;
+        model.user = $rootScope.user;
         model.addForm = addForm;
         model.selectForm = selectForm;
         model.removeForm = removeFrom;
         model.updateForm = updateForm;
+
+        var user = null;
+        var selectedForm;
+
         if ($rootScope.user != null) {
-            FormService.findAllFormsForUser($rootScope.user.id)
+            user = $rootScope.user;
+            FormService.findAllFormsForUser($rootScope.user._id)
                 .then(function (userForms) {
                     model.forms = userForms;
                 });
         }
-        function addForm (formName) {
-            if ($rootScope.user != null) {
-                var newForm = {id: "",userId: "",title: formName,fields: []};
-                FormService.createFormForUser($rootScope.user.id, newForm)
-                    .then(function (allForms) {
-                        model.forms = allForms;
+
+        function addForm(name) {
+            if (user != null && name) {
+                var newForm = {
+                    "idForUser": user._id,
+                    "title": name
+                }
+                FormService.createFormForUser(user._id, newForm)
+                    .then(function (forms) {
+                        model.forms = forms;
                         model.title = "";
                     });
             }
         }
-        var selectedForm = {};
-        function selectForm (index) {
-            model.title = model.forms[index].title;
+
+        function selectForm(index) {
             selectedForm = model.forms[index];
+            model.title = selectedForm.title;
         }
+
         function removeFrom(index) {
-            FormService.deleteFormById(model.forms[index].id)
-                .then(function (restForms) {
-                    model.forms = restForms
-                });
+            FormService.deleteFormById(model.forms[index]._id)
+            .then(function (forms) {
+                model.forms = forms;
+            });
         }
+
         function updateForm(index, name) {
-            if ($rootScope.user != null) {
-                var newForm = {
-                    id: selectedForm.id,
-                    userId: selectedForm.userId,
-                    title: name
+            if (user != null) {
+                var updatedForm = {
+                    "id": selectedForm._id,
+                    "idForUser": selectedForm.idForUser,
+                    "title": name
                 };
-                FormService.updateFormById(selectedForm.id, newForm)
+                FormService.updateFormById(selectedForm._id, updatedForm)
                     .then(function (allForms) {
                         model.forms = allForms
                     });

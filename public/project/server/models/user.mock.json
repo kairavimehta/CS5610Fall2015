@@ -1,0 +1,37 @@
+﻿[
+  {
+    "uid": 123,
+    "firstName": "Alice",
+    "lastName": "Wonderland",
+    "username": "alice",
+    "password": "alice"
+  },
+  {
+    "uid": 234,
+    "firstName": "Bob",
+    "lastName": "Hope",
+    "username": "bob",
+    "password": "bob"
+  },
+  {
+    "uid": 345,
+    "firstName": "Charlie",
+    "lastName": "Brown",
+    "username": "charlie",
+    "password": "charlie"
+  },
+  {
+    "uid": 456,
+    "firstName": "Dan",
+    "lastName": "Craig",
+    "username": "dan",
+    "password": "dan"
+  },
+  {
+    "uid": 567,
+    "firstName": "Edward",
+    "lastName": "Norton",
+    "username": "ed",
+    "password": "ed"
+  }
+]

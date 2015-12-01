@@ -74,57 +74,5 @@
         "type": "DATE"
       }
     ]
-  },
-    {
-    "id": "020",
-    "title": "MyProfile",
-    "userId": 123,
-    "fields": [
-      {
-        "id": "111",
-        "label": "First Name",
-        "type": "TEXT",
-        "placeholder": "First Name"
-      },
-      {
-        "id": "222",
-        "label": "Last Name",
-        "type": "TEXT",
-        "placeholder": "Last Name"
-      },
-      {
-        "id": "333",
-        "label": "Address",
-        "type": "TEXT",
-        "placeholder": "Address"
-      },
-      {
-        "id": "444",
-        "label": "State",
-        "type": "OPTIONS",
-        "options": [
-          {
-            "label": "Massachussets",
-            "value": "MA"
-          },
-          {
-            "label": "New Hampshire",
-            "value": "NH"
-          }
-        ]
-      },
-      {
-        "id": "555",
-        "label": "ZIP",
-        "type": "TEXT",
-        "placeholder": "ZIP"
-      },
-      {
-        "id": "666",
-        "label": "Email",
-        "type": "EMAIL",
-        "placeholder": "Email"
-      }
-    ]
   }
 ]

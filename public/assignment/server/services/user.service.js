@@ -1,50 +1,65 @@
-﻿var model = require("../models/user.model.js")();
-module.exports = function (app) {
-    app.post("/api/assignment/user", createUser);
-    app.get("/api/assignment/user", findAll);
-    app.get("/api/assignment/user/:id", findById);
+﻿module.exports = function (app, userModel) {
+    app.get("/api/assignment/user/:username/:password", findUser);
+    app.get("/api/assignment/user", findAllUsers);
+    app.get("/api/assignment/user/:username", findUserByUsername);
+    app.post("/api/assignment/user", createUser)
     app.put("/api/assignment/user/:id", updateUser);
-    app.delete("/api/assignment/user:id", deleteUser);
+    app.delete("/api/assignment/user/:id", deleteUserById);
+
+    function findUser(req, res) {
+        var uname = req.params.username;
+        var pwd = req.params.password;
+        var credentials = { "userName": uname, "password": pwd }
+        userModel.findUserByCredentials(credentials).then(function (user) {
+            res.json(user);
+        });
+    }
+
+    function findAllUsers(req, res) {
+        userModel.findAllUsers()
+            .then(function (users) {
+                res.json(users);
+            });
+    }
+
+    function findUserByUsername(req, res) {
+        var uname = req.params.username;
+        userModel.findUserByUsername(uname)
+         .then(function (users) {
+             res.json(users);
+         });
+    }
+
+    function findUserById(req, res) {
+        var id = req.params.id;
+        userModel.findUserById(id)
+         .then(function (users) {
+             res.json(users);
+         });
+    }
+
     function createUser(req, res) {
-        var newUser = req.body;
-        res.json(model.createUser(newUser));
-    }
-    function findAll(req, res) {
-        var modelResponse;
-        var uname = req.query.username;
-        var pwd = req.query.password;
-        if (uname != undefined && pwd != undefined) {
-            modelResponse = findUserByCredentials(uname, pwd);
-        }
-        else if (uname != undefined) {
-            modelResponse = findUserByUsername(uname);
-        }
-        else {
-            modelResponse = model.findAll();
-        }
-        res.json(modelResponse);
-    }
-    function findUserByUsername(uname) {
-        return model.findUserByUsername;
-    }
-    function findUserByCredentials(uname, pwd) {
-        var credentials = {
-            "username": uname,
-            "password": pwd
-        };
-        return model.findUserByCredentials(credentials);
-    }
-    function findById(req, res) {
-        var id = req.params.id;
-        res.json(model.findById(id));
-    }
-    function updateUser(req, res) {
-        var id = req.params.id;
         var user = req.body;
-        res.json(model.updateUser(id, user));
+        userModel.createUser(user)
+            .then(function (user) {
+                res.json(user);
+            });
     }
-    function deleteUser(req, res) {
-        var id = req.params.id;
-        res.json(model.deleteUser(id));
+
+    function updateUser(req, res) {
+        var uid = req.params.id;
+        var user = req.body;
+        userModel.updateUser(uid, user)
+            .then(function (user) {
+                res.json(user);
+            });
     }
-};
+
+    function deleteUserById(req, res) {
+        var uid = req.params.id;
+        userModel.deleteUserById(uid)
+              .then(function (users) {
+                  res.json(users);
+              });
+    }
+}

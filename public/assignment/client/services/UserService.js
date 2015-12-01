@@ -1,64 +1,79 @@
-'use strict';
-(function () {
+﻿(function () {
     angular
         .module("FormBuilderApp")
         .factory("UserService", UserService);
-    function UserService($http,$q) {
+
+    function UserService($http, $q) {
         var service = {
-            findUserByUsernameAndPassword: findByUsernameAndPassword,
+            findUserByUsernameAndPassword: findByCredentials,
             findAllUsers: findAll,
+            findUserByUsername: findByUsername,
+            findUserById: findById,
             createUser: createUser,
-            deleteUserById: deleteById,
             updateUser: updateUser,
+            deleteUserById: deleteById
         };
         return service;
-        function findByUsernameAndPassword(uname, pwd) {
+
+        function findByCredentials(uname, pwd) {
             var deferred = $q.defer();
-            $http.get("/api/assignment/user?username="+uname+"&password="+pwd)
+            $http.get("/api/assignment/user/" + uname + "/" + pwd)
                 .success(function (response) {
                     deferred.resolve(response);
                 });
             return deferred.promise;
         }
+
         function findAll() {
             var deferred = $q.defer();
             $http.get("/api/assignment/user")
                 .success(function (response) {
                     deferred.resolve(response);
+                })
+            return deferred.promise;
+        }
+
+        function findByUsername(uname) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user/" + uname)
+                .success(function (response) {
+                    deferred.resolve(response)
                 });
             return deferred.promise;
         }
-        function createUser(user, callback) {
-            user.uid = guid();
+
+        function findById(uid) {
             var deferred = $q.defer();
-            $http.post("/api/assignment/user", user)
+            $http.get("/api/assignment/user/" + uid)
                 .success(function (response) {
                     deferred.resolve(response);
                 });
             return deferred.promise;
         }
-        function guid() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                  .toString(16)
-                  .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-              s4() + '-' + s4() + s4() + s4();
+
+        function createUser(user) {
+            var deferred = $q.defer();
+            $http.post("/api/assignment/user", user)
+            .success(function (response) {
+                deferred.resolve(response);
+            });
+            return deferred.promise;
         }
+
+        function updateUser(uid, user) {
+            var deferred = $q.defer();
+            $http.put("/api/assignment/user/" + uid, user)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
         function deleteById(uid) {
             var deferred = $q.defer();
             $http.delete("/api/assignment/user/" + uid)
-                .success(function (response) {
-                    deferred.resolve(response);
-                });
-            return deferred.promise;
-        }
-        function updateUser(uid, newUser) {
-            var deferred = $q.defer();
-            $http.put("/api/assignment/user/" + uid, newUser)
-                .success(function (response) {
-                    deferred.resolve(response);
+                .success(function (users) {
+                    deferred.resolve(users)
                 });
             return deferred.promise;
         }
