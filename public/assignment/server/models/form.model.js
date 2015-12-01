@@ -56,12 +56,11 @@ module.exports = function (db) {
         findById(fid)
             .then(function (form) {
                 uid = form.idForUser;
-                FormModel.remove({ "_id": formId }, function (err, form) {
+                FormModel.remove({ "_id": fid }, function (err, form) {
                     findAllForUser(uid).then(function (forms) {
                         deferred.resolve(forms);
                     });
                 });
-                console.log("deleted");
             });
         return deferred.promise;
     }
