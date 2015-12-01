@@ -5,4 +5,4 @@ module.exports = mongoose.Schema({
     "firstName": {type: String,},
     "lastName": {type: String,},
     "email": {type: String,}
-}, { collection: 'test.user' });
+}, { collection: 'cs5610.assignment.user' });

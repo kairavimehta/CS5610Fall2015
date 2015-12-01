@@ -15,4 +15,4 @@ module.exports = mongoose.Schema({
         "placeholder": {type: String}
     }]
 },
-{ collection: 'test.forms3' });
+{ collection: 'cs5610.assignment.form' });
