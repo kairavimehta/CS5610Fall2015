@@ -1,22 +1,28 @@
-﻿                <!--<ul class="nav navbar-nav navbar-right">
-                    <li class="divider">| </li>
-                    <li class="title active"><a href="index.html">Home</a></li>
-                    <li class="divider"> | </li>
-                    <li class="title"><a href="ads.html">BrowseAds</a></li>
-                    <li class="divider"> | </li>
-                    <li class="title"><a href="index.html">LogOut</a></li>
-                    <li class="divider"> | </li>
-                </ul>-->
-<div class="container">
+﻿<div class="container" ng-init="init()">
     <div class="row">
         <h2 align="center">Recent Ads</h2>
         <hr />
-        <p class="posts">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-        <hr />
-        <p class="posts">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
+        <!--<table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>PostedBy</th>
+                    <th>PostedOn</th>
+                    <th>Location</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ad in model.ads || '-postedOn'">
+                    <td class="posts">{{ad.postedBy}}</td>
+                    <td class="posts">{{ad.postedOn}}</td>
+                    <td class="posts">{{ad.address}}</td>
+                    <td class="posts">{{ad.from}}</td>
+                    <td class="posts">{{ad.to}}</td>
+                    <td class="posts">{{ad.details}}</td>
+                </tr>
+            </tbody>
+        </table>-->
     </div>
 </div>

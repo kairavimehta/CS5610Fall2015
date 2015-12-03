@@ -1,13 +1,4 @@
-﻿            <!--<ul class="nav navbar-nav navbar-right">
-                <li class="divider">| </li>
-                <li class="title active"><a href="index.html">Home</a></li>
-                <li class="divider"> | </li>
-                <li class="title"><a href="ads.html">BrowseAds</a></li>
-                <li class="divider"> | </li>
-                <li class="title"><a href="index.html">LogOut</a></li>
-                <li class="divider"> | </li>
-            </ul>-->
-<div class="container">
+﻿<div class="container" ng-init="init()">
     <div class="row">
         <div class="col-sm-3 col-md-3">
             <img class="profile" src="../../../../project/client/images/person.jpg" />
@@ -24,7 +15,7 @@
     </div>
     <div class="row">
         <form class="form-horizontal">
-            <h2 align="center">
+            <!--<h2 align="center">
                 Photo
             </h2>
             <div class="form-group">
@@ -37,7 +28,7 @@
                 <div class="col-sm-offset-2 col-sm-10">
                     <button ng-click="add()" type="submit" class="btn btn-default">Add this image</button>
                 </div>
-            </div>
+            </div>-->
             <hr />
             <h2 align="center">
                 Status
@@ -45,29 +36,69 @@
             <div class="form-group">
                 <label for="status" class="col-sm-2 control-label">Write Status:</label>
                 <div class="col-sm-10">
-                    <textarea rows="1" class="form-control" id="status" placeholder="Enter the status here" maxlength="100"></textarea>
+                    <textarea ng-model="status" rows="1" class="form-control" id="status" placeholder="Enter the status here" maxlength="500"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button ng-click="add()" type="submit" class="btn btn-default">Add this status</button>
+                    <button ng-click="model.add(status)" type="submit" class="btn btn-default">Add this status</button>
                 </div>
             </div>
             <hr />
-            <h2 align="center">
-                Ad
-            </h2>
-            <div class="form-group">
+            <!--<h2 align="center">
+                Post Ad
+            </h2>-->
+            <!--<div class="form-group form-horizontal">
                 <label for="ad" class="col-sm-2 control-label">Write Ad:</label>
                 <div class="col-sm-10">
-                    <textarea rows="1" class="form-control" id="ad" placeholder="Enter the ad here" maxlength="100"></textarea>
+                    <input type="date" ng-model="startDate" class="form-control" />
+                    <input type="date" ng-model="endDate" class="form-control" />
+                    <input type="text" ng-model="Address" class="form-control" placeholder="Enter complete Address" />
+                    <textarea ng-model="content" rows="1" class="form-control" id="content" placeholder="Enter the ad here" maxlength="100"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button ng-click="add()" type="submit" class="btn btn-default">Post my Ad</button>
+                    <button ng-click="model.postAd(ad)" type="submit" class="btn btn-default">Post my Ad</button>
+                </div>
+            </div>-->
+        </form>
+        <form class="form-horizontal">
+            <h2 align="center">
+                PostAd
+            </h2>
+            <div class="form-group">
+                <label for="sd" class="col-sm-2 control-label">From:</label>
+                <div class="col-sm-10">
+                    <input id="sd" type="date" ng-model="startDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ed" class="col-sm-2 control-label">To:</label>
+                <div class="col-sm-10">
+                    <input id="ed" type="date" ng-model="endDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="adress" class="col-sm-2 control-label">Address:</label>
+                <div class="col-sm-10">
+                    <input type="text" ng-model="Address" class="form-control" placeholder="Street, #, City, State, PinCode" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="details" class="col-sm-2 control-label">Details:</label>
+                <div class="col-sm-10">
+                    <textarea ng-model="details" rows="1" class="form-control" id="details" placeholder="Enter additional here" maxlength="200"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button ng-click="model.postAd(startDate,endDate,Address,details)" type="submit" class="btn btn-default">PostAd</button>
                 </div>
             </div>
         </form>
+
+
+
     </div>
 </div>

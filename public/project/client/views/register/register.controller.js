@@ -15,14 +15,14 @@
 				    } else {
 				        var exists = false;
 				        var emailExists = false;
-				        users.forEach(function (user, index) {
-				            if (user && user.username === uname && user.password === pwd) {
+				        for (var u in users) {
+				            if (users[u] && users[u].userName === uname && users[u].password === pwd) {
 				                exists = true;
 				            }
-				            else if (user && user.email === email) {
+				            else if (users[u] && users[u].email === email) {
 				                emailExists = true;
 				            }
-				        });
+				        }
 				        if (emailExists && exists) {
 				            alert("User already exists with that email + username");
 				        } else if (exists) {
@@ -31,7 +31,7 @@
 				            alert("User already exists with that email");
 				        } else {
 				            var newUser = {
-				                username: uname,
+				                userName: uname,
 				                password: pwd,
 				                firstName: fname,
 				                lastName: lname,
@@ -41,6 +41,7 @@
                                 .then(function (user) {
                                     $rootScope.user = user;
                                     $location.url('/myprofile');
+                                    console.log(newUser);
                                 });
 				        }
 				    }

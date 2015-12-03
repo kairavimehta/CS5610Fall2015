@@ -5,12 +5,18 @@
         .module("SocialApp")
         .controller("FindController", FindController);
 
-
-    function FindController($scope, $location) {
-        $scope.back = function () {
-            $location.path("/myprofile");
-        };
-        console.log("find");
+    function FindController($rootScope, $location, UserService) {
+        var model = this;
+        model.find = find;
+        model.user = $rootScope.user;
+        function find(name) {
+            if (name) {
+                UserService.findUsers(name)
+                    .then(function (users) {
+                        model.users = users;
+                        model.search = true;
+                });
+            }
+        }        
     }
-
 })();

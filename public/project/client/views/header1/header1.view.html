@@ -23,6 +23,8 @@
                 <li ng-if="!user" class="divider"> | </li>
                 <li ng-if="!user" class="title" ng-class="{'active' : $location.url().indexOf('login') != -1}"><a href="#/login">IAmBack</a></li>
                 <li ng-if="!user" class="divider"> | </li>
+                <li ng-if="user" class="title"><a href="#/myprofile">MyPage</a></li>
+                <li ng-if="user" class="divider"> | </li>
                 <li ng-if="user" class="title" ng-click="logout()"><a href="#/home">Logout</a></li>
                 <li ng-if="user" class="divider"> | </li>
             </ul>

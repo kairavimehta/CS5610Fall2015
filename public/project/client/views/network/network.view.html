@@ -1,13 +1,4 @@
-﻿            <!--<ul class="nav navbar-nav navbar-right">
-                <li class="divider">| </li>
-                <li class="title active"><a href="index.html">Home</a></li>
-                <li class="divider"> | </li>
-                <li class="title"><a href="ads.html">BrowseAds</a></li>
-                <li class="divider"> | </li>
-                <li class="title"><a href="index.html">LogOut</a></li>
-                <li class="divider"> | </li>
-            </ul>-->
-<div class="container">
+﻿<div class="container" ng-init="init()">
     <div class="row">
         <div class="col-sm-3 col-md-3">
             <img class="profile" src="../../../../project/client/images/person.jpg" />
@@ -24,82 +15,23 @@
     </div>
     <div class="row">
         <h2 align="center"> My Network</h2>
-        <hr />
     </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <a href="#/userProfile">
-                <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-            </a>
-            <p class="networkname">Name</p>
-        </div>
-        <div class="col-sm-2">
-            <a href="#/userProfile">
-                <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-            </a>
-            <p class="networkname">Name</p>
-        </div>
-        <div class="col-sm-2">
-            <a href="#/userProfile">
-                <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-            </a>
-            <p class="networkname">Name</p>
-        </div>
-        <div class="col-sm-2">
-            <a href="#/userProfile">
-                <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-            </a>
-            <p class="networkname">Name</p>
-        </div>
-        <div class="col-sm-2">
-            <a href="#/userProfile">
-                <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-            </a>
-            <p class="networkname">Name</p>
-        </div>
-        <div class="col-sm-2">
-            <a href="#/userProfile">
-                <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-            </a>
-            <p class="networkname">Name</p>
-        </div>
-    </div>
-    <div class="row">
-    <div class="col-sm-2">
-        <a href="#/userProfile">
-            <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-        </a>
-        <p class="networkname">Name</p>
-    </div>
-    <div class="col-sm-2">
-        <a href="#/userProfile">
-            <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-        </a>
-        <p class="networkname">Name</p>
-    </div>
-    <div class="col-sm-2">
-        <a href="#/userProfile">
-            <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-        </a>
-        <p class="networkname">Name</p>
-    </div>
-    <div class="col-sm-2">
-        <a href="#/userProfile">
-            <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-        </a>
-        <p class="networkname">Name</p>
-    </div>
-    <div class="col-sm-2">
-        <a href="#/userProfile">
-            <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-        </a>
-        <p class="networkname">Name</p>
-    </div>
-    <div class="col-sm-2">
-        <a href="#/userProfile">
-            <img class="networkimg" src="../../../../project/client/images/person.jpg" />
-        </a>
-        <p class="networkname">Name</p>
-    </div>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Display</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="friend in model.friends">
+                <td class="networkname">{{friend.firstName}} &nbsp; {{friend.lastName}}</td>
+                <td>
+                    <a href="#/user/{{user._id}}/userProfile/{{friend.person}}">
+                        <img class="networkimg" src="../../../../project/client/images/person.jpg" />
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-    </div>

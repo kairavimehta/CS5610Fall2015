@@ -20,8 +20,8 @@
             })
             .when("/ads", {
                 templateUrl: "views/ads/ads.view.html",
-                controller: "AdsController"
-                //controllerAs: "model"
+                controller: "AdsController",
+                controllerAs: "model"
             })
             .when("/chat", {
                 templateUrl: "views/chat/chat.view.html",
@@ -30,8 +30,8 @@
             })
             .when("/find", {
                 templateUrl: "views/find/find.view.html",
-                controller: "FindController"
-                //controllerAs: "model"
+                controller: "FindController",
+                controllerAs: "model"
             })
             .when("/message", {
                 templateUrl: "views/message/message.view.html",
@@ -40,23 +40,23 @@
             })
             .when("/myprofile", {
                 templateUrl: "views/myprofile/myprofile.view.html",
-                controller: "MyProfileController"
-                //controllerAs: "model"
+                controller: "MyProfileController",
+                controllerAs: "model"
             })
             .when("/network", {
                 templateUrl: "views/network/network.view.html",
-                controller: "NetworkController"
-                //controllerAs: "model"
+                controller: "NetworkController",
+                controllerAs: "model"
             })
             .when("/upload", {
                 templateUrl: "views/upload/upload.view.html",
-                controller: "UploadController"
-                //controllerAs: "model"
+                controller: "UploadController",
+                controllerAs: "model"
             })
-            .when("/userProfile", {
+            .when("/user/:userId/userProfile/:profileId", {
                 templateUrl: "views/userProfile/userProfile.view.html",
-                controller: "UserProfileController"
-                //controllerAs: "model"
+                controller: "UserProfileController",
+                controllerAs: "model"
             })
             .otherwise({
                 redirectTo: "/home"
