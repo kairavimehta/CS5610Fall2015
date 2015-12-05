@@ -1,21 +1,12 @@
-﻿                <!--<ul class="nav navbar-nav navbar-right">
-                    <li class="divider">| </li>
-                    <li class="title active"><a href="index.html">Home</a></li>
-                    <li class="divider"> | </li>
-                    <li class="title"><a href="ads.html">BrowseAds</a></li>
-                    <li class="divider"> | </li>
-                    <li class="title"><a href="index.html">LogOut</a></li>
-                    <li class="divider"> | </li>
-                </ul>-->
-<div class="container">
+﻿<div class="container">
     <div class="row">
         <div class="col-sm-3 col-md-3">
             <img class="profile" src="../../../../project/client/images/person.jpg" />
         </div>
         <div class="col-sm-9 col-md-9">
             <ul class="nav nav-pills">
-                <li class="subnav"><a href="#/myprofile">MyPage</a></li>
-                <li class="subnav active"><a href="#/chat">Chat</a></li>
+                <li class="subnav"><a href="#/user/{{model.uid}}/userProfile/{{model.pid}}">UserProfile</a></li>
+                <li class="subnav active"><a href="#/user/{{model.uid}}/chat/{{model.pid}}">Chat</a></li>
                 <li class="subnav"><a href="#/find">Find</a></li>
             </ul>
         </div>
@@ -23,9 +14,9 @@
     <div class="row">
         <h2>Chat</h2>
         <form class="form-horizontal">
-            <input type="text" class="form-control" id="subject" placeholder="Subject">
-            <textarea rows="5" class="form-control" id="message" placeholder="Enter the message here" maxlength="200"></textarea>
-            <button ng-click="send()"type="submit" class="btn btn-default">Send!</button>
+            <input ng-model="subject" type="text" class="form-control" id="subject" placeholder="Subject">
+            <textarea ng-model="message" rows="5" class="form-control" id="message" placeholder="Enter the message here" maxlength="200"></textarea>
+            <button ng-click="model.send(subject,message)"type="submit" class="btn btn-default">Send!</button>
         </form>
     </div>
 </div>

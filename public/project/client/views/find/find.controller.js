@@ -9,6 +9,16 @@
         var model = this;
         model.find = find;
         model.user = $rootScope.user;
+
+        function init() {
+            if (!$rootScope.user) {
+                alert("login to access this page");
+                $location.path("/login");
+            }
+        }
+
+        init();
+
         function find(name) {
             if (name) {
                 UserService.findUsers(name)

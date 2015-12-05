@@ -6,19 +6,22 @@
         </div>
         <div class="col-sm-9 col-md-9">
             <ul class="nav nav-pills">
-                <li class="subnav"><a href="#/myprofile">MyPage</a></li>
-                <li class="subnav"><a href="#/chat">Chat</a></li>
+                <li class="subnav"><a href="#/user/{{model.userid}}/userProfile/{{model.personid}}">UserProfile</a></li>
+                <li ng-if="!model.self" class="subnav"><a href="#/user/{{model.userid}}/chat/{{model.personid}}">Chat</a></li>
                 <li class="subnav"><a href="#/find">Find</a></li>
             </ul>
         </div>
     </div>
     <div class="row">
-        <button ng-show="!model.isFriend" ng-click="model.addFriend()" align="right" type="submit" class="btn btn-default">Add to Network</button>
-        <button ng-show="model.isFriend" ng-click="model.removeFriend()" align="right" type="submit" class="btn btn-default">Remove From Network</button>
+        <button ng-show="!model.self && !model.isFriend" ng-click="model.addFriend()" align="right" type="submit" class="btn btn-default">Add to Network</button>
+        <button ng-show="!model.self && model.isFriend" ng-click="model.removeFriend()" align="right" type="submit" class="btn btn-default">Remove From Network</button>
         <h2 align="center">
             Recent Posts
         </h2>
-        <table ng-if="model.isFriend" class="table table-stripped">
+        <h1 class="posts" ng-if="!model.self && !model.isFriend">
+            Add user to your network to see the recent posts
+        </h1>
+        <table ng-if="model.self || model.isFriend" class="table table-stripped">
             <tr ng-repeat="post in model.posts | orderBy:'-created'">
                 <td class="posts">
                     {{post.content}}

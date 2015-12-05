@@ -16,13 +16,49 @@ module.exports = function (app, User) {
     app.delete("/api/project/user/:userId/remove/:personId", removeFriend);
     app.post("/api/project/user/ad", postAd);
     app.get("/api/project/ads", getAds);
+    app.post("/api/project/user/chat", sendMessage);
+    app.get("/api/project/messages/:userid", getMessages);
+    app.delete("/api/project/user/:uid/message/:mid", removeMsg);
+    app.delete("/api/project/ad/:aid", removeAd);
 
-    function getAds() {
-        //console.log("sersfe");
+    function removeAd(req, res) {
+        //var uid = req.params.uid;
+        var aid = req.params.aid;
+        User.removeAd(aid)
+            .then(function (ads) {
+                res.json(ads);
+            })
+    }
+
+    function removeMsg(req, res) {
+        var uid = req.params.uid;
+        var mid = req.params.mid;
+        User.removeMsg(uid, mid)
+            .then(function (msgs) {
+                res.json(msgs);
+            })
+    }
+
+    function getMessages(req, res) {
+        var uid = req.params.userid;
+        User.getMessages(uid)
+            .then(function (msgs) {
+                res.json(msgs);
+            })
+    }
+
+    function sendMessage(req, res) {
+        var msg = req.body || {};
+        User.sendMsg(msg)
+            .then(function (msg) {
+                res.json(msg);
+            })
+    }
+
+    function getAds(req,res) {
         User.getAllAds()
             .then(function (ads) {
                 res.json(ads);
-                    console.log(ads);
             });
     }
 

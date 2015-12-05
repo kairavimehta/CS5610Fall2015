@@ -20,16 +20,55 @@
             getusername: getusername,
             removeFriend: removeFriend,
             postAd: postAd,
-            getAds: getAds
+            getAds: getAds,
+            sendMessage: sendMessage,
+            getMessages: getMessages,
+            removeMsg: removeMsg,
+            removeAd: removeAd
         };
         return service;
+
+        function removeAd(aid) {
+            var deferred = $q.defer();
+            $http.delete("/api/project/ad/" + aid)
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+            return deferred.promise;
+        }
+
+        function removeMsg(uid, mid) {
+            var deferred = $q.defer();
+            $http.delete("/api/project/user/" + uid + "/message/" + mid)
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+            return deferred.promise;
+        }
+
+        function getMessages(uid) {
+            var deferred = $q.defer();
+            $http.get("/api/project/messages/" + uid)
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+            return deferred.promise;
+        }
+
+        function sendMessage(message) {
+            var deferred = $q.defer();
+            $http.post("/api/project/user/chat", message)
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+            return deferred.promise;
+        }
 
         function getAds() {
             var deferred = $q.defer();
             $http.get("/api/project/ads")
                 .success(function (response) {
                     deferred.resolve(response);
-                    //console.log(response);
                 });
             return deferred.promise;
         }

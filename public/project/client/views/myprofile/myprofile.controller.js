@@ -12,6 +12,7 @@
 
         function init() {
             if ($rootScope.user) {
+                model.name = $rootScope.user.firstName + " " + $rootScope.user.lastName;
                 var currUser = $rootScope.user._id;
                 UserService.getAllPosts(currUser)
                     .then(function (posts) {
@@ -20,7 +21,7 @@
             }
             else {
                 alert("login to access this page");
-                $location.path("#/home");
+                $location.path("/login");
             }
         }
         init();

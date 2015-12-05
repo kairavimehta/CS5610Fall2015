@@ -8,6 +8,11 @@
             .when("/home", {
                 templateUrl: "views/home/home.view.html"
             })
+            .when("/news", {
+                templateUrl: "views/news/news.view.html",
+                controller: "NewsController",
+                controllerAs: "model"
+            })
             .when("/login", {
                 templateUrl: "views/login/login.view.html",
                 controller: "LoginController",
@@ -23,10 +28,10 @@
                 controller: "AdsController",
                 controllerAs: "model"
             })
-            .when("/chat", {
+            .when("/user/:userid/chat/:personid", {
                 templateUrl: "views/chat/chat.view.html",
-                controller: "ChatController"
-                //controllerAs: "model"
+                controller: "ChatController",
+                controllerAs: "model"
             })
             .when("/find", {
                 templateUrl: "views/find/find.view.html",
@@ -35,8 +40,8 @@
             })
             .when("/message", {
                 templateUrl: "views/message/message.view.html",
-                controller: "MessageController"
-                //controllerAs: "model"
+                controller: "MessageController",
+                controllerAs: "model"
             })
             .when("/myprofile", {
                 templateUrl: "views/myprofile/myprofile.view.html",

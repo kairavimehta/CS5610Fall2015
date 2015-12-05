@@ -6,6 +6,8 @@ module.exports = function (db) {
     var PostSchema = require("./post.schema.js");
     var FriendsSchema = require("./friends.schema.js");
     var AdsSchema = require("./ads.schema.js");
+    var MessageSchema = require("./message.schema.js");
+    var MessageModel = mongoose.model("MessageModel", MessageSchema);
     var AdsModel = mongoose.model("AdsModel", AdsSchema);
     var FriendsModel = mongoose.model("FriendsModel", FriendsSchema);
     var PostModel = mongoose.model("PostModel", PostSchema);
@@ -28,16 +30,57 @@ module.exports = function (db) {
         removePost: removePost,
         removeFriend: removeFriend,
         postAd: postAd,
-        getAllAds: getAllAds
+        getAllAds: getAllAds,
+        sendMsg: sendMsg,
+        getMessages: getMessages,
+        removeMsg: removeMsg,
+        removeAd: removeAd
     };
 
     return api;
+
+    function removeAd(aid) {
+        var deferred = q.defer();
+        AdsModel.remove({ "_id": aid }, function (err, msg) {
+            getAllAds()
+                .then(function (ads) {
+                    deferred.resolve(ads);
+                })
+        })
+        return deferred.promise;
+    }
+
+    function removeMsg(uid, mid) {
+        var deferred = q.defer();
+        MessageModel.remove({ "_id": mid }, function (err, msg) {
+            getMessages(uid)
+                .then(function (msg) {
+                    deferred.resolve(msg);
+                })
+        })
+        return deferred.promise;
+    }
+
+    function getMessages(uid) {
+        var deferred = q.defer();
+        MessageModel.find({ "to": uid }, function (err, msgs) {
+            deferred.resolve(msgs);
+        })
+        return deferred.promise;
+    }
+
+    function sendMsg(msg) {
+        var deferred = q.defer();
+        MessageModel.create(msg, function (err, msg) {
+            deferred.resolve(msg);
+        })
+        return deferred.promise;
+    }
 
     function getAllAds() {
         var deferred = q.defer();
         AdsModel.find(function (err, ads) {
             deferred.resolve(ads);
-            //console.log(ads);
         });
         return deferred.promise;
     }

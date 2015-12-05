@@ -9,13 +9,19 @@
         var model = this;
         model.add = add;
         model.postAd = postAd;
-        var currUser = $rootScope.user._id;
+        var user = $rootScope.user;
 
         function init() {
-            UserService.getAllPosts(currUser)
+            if (user) {
+                UserService.getAllPosts(user._id)
                 .then(function (posts) {
                     $rootScope.posts = posts;
                 });
+            }
+            else {
+                alert("login to access this page");
+                $location.path("/login");
+            }
         }
         init();
 

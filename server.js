@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
+
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
@@ -23,6 +26,13 @@ var db = mongoose.connect(connectionString);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// for passport
+app.use(express.cookieParser());
+app.use(express.bodyParser());
+app.use(express.session({ secret: 'SECRET' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //require("./experiments/nodejs/expressjs/server.js")(app);
 //require("./public/angularjsClient/server.js")(app);

@@ -10,12 +10,17 @@
         model.user = $rootScope.user;
 
         function init() {
-            var uid = $rootScope.user._id;
-            console.log(uid);
-            UserService.getFriends(uid)
-                .then(function (friends) {
-                    model.friends = friends;
-                });
+            if ($rootScope.user) {
+                var uid = $rootScope.user._id;
+                UserService.getFriends(uid)
+                    .then(function (friends) {
+                        model.friends = friends;
+                    });
+            }
+            else {
+                alert("login to access this page");
+                $location.path("/login");
+            }
         }
         init();
     }

@@ -10,10 +10,16 @@
         model.addFriend = addFriend;
         model.removeFriend = removeFriend;
         model.isFriend = false;
+        model.self = false;
+        model.userid = $routeParams.userId;
+        model.personid = $routeParams.profileId;
 
         function init() {
             var userid = $routeParams.userId;
             var personid = $routeParams.profileId;
+            if (userid === personid) {
+                model.self = true;
+            }
             UserService.checkFriends(userid, personid)
                 .then(function (response) {
                     if (response.length > 0) {
