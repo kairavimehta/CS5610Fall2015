@@ -66,5 +66,5 @@
             .otherwise({
                 redirectTo: "/home"
             });
-    }
+    };
 })();

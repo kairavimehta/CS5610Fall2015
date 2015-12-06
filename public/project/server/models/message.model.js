@@ -2,66 +2,64 @@
 var mongoose = require('mongoose');
 
 module.exports = function (db) {
-    var FriendSchema = require("./friends.schema.js");
-    var FriendModel = mongoose.model("FriendModel", FriendSchema);
+    var MessageSchema = require("./message.schema.js");
+    var MessageModel = mongoose.model("MessageModel", MessageSchema);
 
     var api = {
-        createUser: createUser,
-        findAll: findAll,
-        findById: findById,
-        updateUser: updateUser,
-        deleteUser: deleteUser,
-        findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials
+        getMessages: getMessages,
+        sendMsg: sendMsg,
+        removeMsg: removeMsg,
+        getmsgforperson: getmsgforperson
     };
+
     return api;
-    function createUser(user) {
-        users.push(user);
-        return (user);
-        console.log(users);
-    }
-    function findAll() {
-        return users;
-    }
-    function findById(id) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].id == id) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-    function updateUser(id, user) {
-        for (var u in users) {
-            if (users[u].id == id) {
-                users[u] = user;
-                return users[u];
-            }
-        }
-        return null;
-    }
-    function deleteUser(id) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].id == id) {
-                users.splice(i, 1);
-            }
-        }
-        return users;
-    }
-    function findUserByUsername(username) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].username == username) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-    function findUserByCredentials(login) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].username == login["username"] && users[i].password == login["password"]) {
-                return users[i];
-            }
-        }
-        return null;
-    }
+
+    function getMessages(uid) {
+        var deferred = q.defer();
+        MessageModel.find({ "to": uid }, function (err, msgs) {
+            deferred.resolve(msgs);
+        }).sort({ "date": -1 });
+        return deferred.promise;
+    };
+
+    function sendMsg(msg) {
+        var deferred = q.defer();
+        MessageModel.create(msg, function (err, msg) {
+            deferred.resolve(msg);
+        });
+        return deferred.promise;
+    };
+
+    function removeMsg(uid, mid) {
+        var deferred = q.defer();
+        MessageModel.remove({ "_id": mid }, function (err, msg) {
+            getMessages(uid)
+                .then(function (msg) {
+                    deferred.resolve(msg);
+                });
+        });
+        return deferred.promise;
+    };
+
+    //function getmsgforperson(uid, pid) {
+    //    var deferred = q.defer();
+    //    //var msgs = [];
+    //    MessageModel.find({ "from": pid, "to": uid }, function (err, msgs) {
+    //       // msgs.push(msg);
+    //        MessageModel.find({ "from": uid, "to": pid }, function (err, msg) {
+    //            //msgs.push(msg)
+    //            deferred.resolve(msgs,msg);
+    //        }).sort({ "date" : -1 })
+    //    }).sort({ "date" : -1})
+    //    return deferred.promise;
+    //}
+
+    function getmsgforperson(uid, pid) {
+        var deferred = q.defer();
+        MessageModel.find({ $or: [{ "from": pid, "to": uid }, { "from": uid, "to": pid }] }
+            , function (err, msgs) {
+                deferred.resolve(msgs);
+            }).sort({ "date": 1 });
+        return deferred.promise;
+    };
 };

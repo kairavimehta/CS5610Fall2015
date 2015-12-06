@@ -34,10 +34,33 @@ module.exports = function (db) {
         sendMsg: sendMsg,
         getMessages: getMessages,
         removeMsg: removeMsg,
-        removeAd: removeAd
+        removeAd: removeAd,
+        getmsgforperson: getmsgforperson
     };
 
     return api;
+
+    //function getmsgforperson(uid, pid) {
+    //    var deferred = q.defer();
+    //    //var msgs = [];
+    //    MessageModel.find({ "from": pid, "to": uid }, function (err, msgs) {
+    //       // msgs.push(msg);
+    //        MessageModel.find({ "from": uid, "to": pid }, function (err, msg) {
+    //            //msgs.push(msg)
+    //            deferred.resolve(msgs,msg);
+    //        }).sort({ "date" : -1 })
+    //    }).sort({ "date" : -1})
+    //    return deferred.promise;
+    //}
+
+    function getmsgforperson(uid, pid) {
+        var deferred = q.defer();
+        MessageModel.find({ $or: [{ "from": pid, "to": uid }, { "from": uid, "to": pid }] }
+, function (err, msgs) {
+            deferred.resolve(msgs);
+        }).sort({ "date": 1 })
+        return deferred.promise;
+    }
 
     function removeAd(aid) {
         var deferred = q.defer();
@@ -65,7 +88,7 @@ module.exports = function (db) {
         var deferred = q.defer();
         MessageModel.find({ "to": uid }, function (err, msgs) {
             deferred.resolve(msgs);
-        })
+        }).sort({ "date": -1 })
         return deferred.promise;
     }
 
@@ -81,7 +104,7 @@ module.exports = function (db) {
         var deferred = q.defer();
         AdsModel.find(function (err, ads) {
             deferred.resolve(ads);
-        });
+        }).sort({ "postedOn": -1 });
         return deferred.promise;
     }
 

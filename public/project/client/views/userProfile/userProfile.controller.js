@@ -1,11 +1,10 @@
-﻿(function () {
-    'use strict';
-
+﻿'use strict';
+(function () {
     angular
         .module("SocialApp")
         .controller("UserProfileController", UserProfileController);
 
-    function UserProfileController($location, UserService, $rootScope, $routeParams) {
+    function UserProfileController(FriendService, PostService, UserService, $rootScope, $routeParams) {
         var model = this;
         model.addFriend = addFriend;
         model.removeFriend = removeFriend;
@@ -14,50 +13,56 @@
         model.userid = $routeParams.userId;
         model.personid = $routeParams.profileId;
 
+        $rootScope.$on('auth', function (user) {
+            init();
+        });
+
         function init() {
+            model.user = $rootScope.user;
             var userid = $routeParams.userId;
             var personid = $routeParams.profileId;
             if (userid === personid) {
                 model.self = true;
-            }
-            UserService.checkFriends(userid, personid)
+            };
+            FriendService.checkFriends(userid, personid)
                 .then(function (response) {
                     if (response.length > 0) {
                         model.isFriend = true;
-                    }
-                    else {
+                    } else {
                         model.isFriend = false;
-                    }
+                    };
                 });
-            UserService.getAllPosts(personid)
+
+            PostService.getAllPosts(personid)
                 .then(function (posts) {
                     model.posts = posts;
                 });
+
             UserService.getusername(personid)
                 .then(function (user) {
                     var fname = user.firstName;
                     var lname = user.lastName;
                     model.username = fname + " " + lname;
                 });
-        }
+        };
         init();
 
         function addFriend() {
             var userid = $routeParams.userId;
             var personid = $routeParams.profileId;
-            UserService.addFriend(userid, personid)
+            FriendService.addFriend(userid, personid)
                 .then(function (response) {
                     init();
-                })
-        }
+                });
+        };
+
         function removeFriend() {
             var userid = $routeParams.userId;
             var personid = $routeParams.profileId;
-            UserService.removeFriend(userid, personid)
+            FriendService.removeFriend(userid, personid)
                 .then(function (response) {
                     init();
-                })
-        }
-    }
-
+                });
+        };
+    };
 })();

@@ -2,66 +2,41 @@
 var mongoose = require('mongoose');
 
 module.exports = function (db) {
-    var FriendSchema = require("./friends.schema.js");
-    var FriendModel = mongoose.model("FriendModel", FriendSchema);
+    var PostSchema = require("./post.schema.js");
+    var PostModel = mongoose.model("PostModel", PostSchema);
 
     var api = {
-        createUser: createUser,
-        findAll: findAll,
-        findById: findById,
-        updateUser: updateUser,
-        deleteUser: deleteUser,
-        findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials
+        getPostsForUser: getPostsForUser,
+        addPost: addPost,
+        removePost: removePost
     };
+
     return api;
-    function createUser(user) {
-        users.push(user);
-        return (user);
-        console.log(users);
-    }
-    function findAll() {
-        return users;
-    }
-    function findById(id) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].id == id) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-    function updateUser(id, user) {
-        for (var u in users) {
-            if (users[u].id == id) {
-                users[u] = user;
-                return users[u];
-            }
-        }
-        return null;
-    }
-    function deleteUser(id) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].id == id) {
-                users.splice(i, 1);
-            }
-        }
-        return users;
-    }
-    function findUserByUsername(username) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].username == username) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-    function findUserByCredentials(login) {
-        for (var i = 0; i < users.length; i++) {
-            if (users[i].username == login["username"] && users[i].password == login["password"]) {
-                return users[i];
-            }
-        }
-        return null;
-    }
+
+    function getPostsForUser(uid) {
+        var deferred = q.defer();
+        PostModel.find({ "userId": uid }, function (err, posts) {
+            deferred.resolve(posts);
+        });
+        return deferred.promise;
+    };
+
+    function addPost(uid, post) {
+        var deferred = q.defer();
+        PostModel.create(post, function (err, user) {
+            deferred.resolve(post);
+        });
+        return deferred.promise;
+    };
+
+    function removePost(uid, pid) {
+        var deferred = q.defer();
+        PostModel.remove({ "_id": pid }, function (err, post) {
+            getPostsForUser(uid)
+                .then(function (posts) {
+                    deferred.resolve(posts);
+                });
+        });
+        return deferred.promise;
+    };
 };

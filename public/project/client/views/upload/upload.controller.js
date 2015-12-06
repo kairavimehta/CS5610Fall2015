@@ -1,35 +1,34 @@
-﻿(function () {
-    'use strict';
-
+﻿'use strict';
+(function () {
     angular
         .module("SocialApp")
         .controller("UploadController", UploadController);
 
-    function UploadController(UserService, $rootScope, $location) {
+    function UploadController(PostService, AdsService, $rootScope, $location) {
         var model = this;
         model.add = add;
         model.postAd = postAd;
-        var user = $rootScope.user;
+
+        $rootScope.$on('auth', function (user) {
+            init();
+        });
 
         function init() {
-            if (user) {
-                UserService.getAllPosts(user._id)
+            if ($rootScope.user) {
+                model.user = $rootScope.user;
+                PostService.getAllPosts($rootScope.user._id)
                 .then(function (posts) {
                     $rootScope.posts = posts;
                 });
-            }
-            else {
-                alert("login to access this page");
-                $location.path("/login");
-            }
-        }
+            };
+        };
+
         init();
 
         function postAd(sd, ed, address, details) {
             if (sd > ed) {
                 alert("Start cannot be before end");
-            }
-            else if (sd && ed && address && details) {
+            } else if (sd && ed && address && details) {
                 var ad = {
                     "userId": $rootScope.user._id,
                     "postedBy": $rootScope.user.firstName + " " + $rootScope.user.lastName,
@@ -39,29 +38,28 @@
                     "address": address,
                     "details": details
                 };
-                UserService.postAd(ad)
+
+                AdsService.postAd(ad)
                     .then(function (newAd) {
                         alert("Your Ad was successfully posted");
                         $location.path("/myprofile");
-                    })
-            }
-            else {
+                    });
+            } else {
                 alert("All fields need to be filled out in the ad section");
-            }
-        }
-        
+            };
+        };
+
         function add(status) {
             var currUser = $rootScope.user._id;
             var newPost = {
                 "created": new Date(),
                 "content": status,
                 "userId": currUser
-            }
-            UserService.addPost(currUser, newPost)
+            };
+            PostService.addPost(currUser, newPost)
                 .then(function (newPost) {
                     $location.path("/myprofile");
                 });
         };
-    }
-
+    };
 })();

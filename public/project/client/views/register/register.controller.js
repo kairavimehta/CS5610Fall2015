@@ -3,9 +3,12 @@
     angular
         .module("SocialApp")
         .controller("RegisterController", RegisterController);
-    function RegisterController($location,UserService,$rootScope) {
+
+    function RegisterController($location, UserService, $rootScope, AuthService) {
         var model = this;
         model.register = register;
+        model.user = $rootScope.user;
+
         function register(uname, pwd, vpwd, email, fname, lname) {
             if (uname && pwd && vpwd && email && fname && lname) {
                 UserService.findAllUsers()
@@ -18,8 +21,7 @@
 				        for (var u in users) {
 				            if (users[u] && users[u].userName === uname && users[u].password === pwd) {
 				                exists = true;
-				            }
-				            else if (users[u] && users[u].email === email) {
+				            } else if (users[u] && users[u].email === email) {
 				                emailExists = true;
 				            }
 				        }
@@ -37,16 +39,18 @@
 				                lastName: lname,
 				                email: email
 				            };
+
 				            UserService.createUser(newUser)
                                 .then(function (user) {
                                     $rootScope.user = user;
+                                    AuthService.setUser(user._id);
+                                    $rootScope.$broadcast('auth', user);
                                     $location.url('/myprofile');
-                                    console.log(newUser);
                                 });
-				        }
-				    }
-				})
-            }
-        }
-    }
+				        };
+				    };
+				});
+            };
+        };
+    };
 })();
