@@ -1,0 +1,82 @@
+﻿  <div class="container" ng-init="init()">
+    <div ng-show="model.user">
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <img class="profile" src="../../../../project/client/images/person.jpg" />
+            </div>
+            <div class="col-sm-9 col-md-9">
+                <ul class="nav nav-pills">
+                    <li class="subnav"><a href="#/myprofile">MyPage</a></li>
+                    <li class="subnav"><a href="#/upload">CreatePost</a></li>
+                    <li class="subnav active"><a href="#/message">My Messages</a></li>
+                    <li class="subnav"><a href="#/network">Network</a></li>
+                    <li class="subnav"><a href="#/find">Find</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <h2 align="center">My Messages</h2>
+            <table ng-if="!model.showThread" class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="msg in model.msgs">
+                        <td>
+                            <p class="messages">{{msg.fromUser}}</p>
+                            <a href="#/user/{{model.userid}}/userProfile/{{msg.from}}">
+                                <img class="messagepic" src="../../../../project/client/images/person.jpg" />
+                            </a>
+                        </td>
+                        <td class="messages"><b>{{msg.subject}}</b></td>
+                        <td class="messages">{{msg.content}}</td>
+                        <td>
+                            <button ng-click="model.chat(msg.from)" type="submit" class="btn btn-default">Reply</button>
+                            <button ng-click="model.getthread(msg.from)" type="submit" class="btn btn-default">thread</button>
+                            <button ng-click="model.removeMsg($index)" class="btn btn-default btn-danger">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div ng-show="model.showThread" class="container" ng-repeat="t in model.thread">
+                <p>From: {{t.fromUser}}</p>
+                <p>{{t.content}}</p>
+            </div>
+
+            <!--<table ng-if="!model.showThread" class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in model.thread">
+                    <td>
+                        <a href="#/user/{{model.userid}}/userProfile/{{t.from}}">
+                            <p class="messages">{{t.fromUser}}</p>
+                        </a>
+                    </td>
+                    <td class="messages"><b>{{t.subject}}</b></td>
+                    <td class="messages">{{t.content}}</td>
+                </tr>
+            </tbody>
+        </table>-->
+
+            <button ng-show="model.showThread" type="submit" class="btn btn-default">See All</button>
+
+        </div>
+    </div>
+      <div ng-show="!model.user">
+          <h1>Login <a href="#/login">HERE</a> to access</h1>
+      </div>
+</div>

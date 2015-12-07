@@ -1,0 +1,50 @@
+﻿<div class="container">
+    <div class="row">
+        <h2 align="center"> Search</h2>
+        <hr />
+    </div>
+    <div class="row">
+        <form class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+                    <input ng-model="name" type="text" class="form-control" id="search" placeholder="Need to find someone?">
+                </div>
+            </div>
+            <button ng-click="model.find(name)" type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <table ng-if="model.search" class="table table-stripped" >
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>User Name</th>
+                        <th>Display</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="person in model.users">
+                        <td class="posts">
+                            {{person.firstName}}
+                        </td>
+                        <td class="posts">
+                            {{person.lastName}}
+                        </td>
+                        <td class="posts">
+                            {{person.userName}}
+                        </td>
+                        <td>
+                            <a href="#/user/{{user._id}}/userProfile/{{person._id}}">
+                                <img class="messagepic" src="../../../../project/client/images/person.jpg" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

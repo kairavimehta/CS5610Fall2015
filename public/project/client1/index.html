@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html ng-app="SocialApp">
+    <head>
+
+        <title>SocialConnect</title>
+
+	    <meta charset="utf-8" />
+
+        <!--edit ad
+        message thread
+        css-->
+
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.js"></script>
+        <link rel="stylesheet" href="css/style.css" />
+
+        <script src="app.js"></script>
+        <script src="config.js"></script>
+
+        <script src="views/header1/header1.controller.js"></script>
+        <script src="views/ads/ads.controller.js"></script>
+        <script src="views/chat/chat.controller.js"></script>
+        <script src="views/find/find.controller.js"></script>
+        <script src="views/login/login.controller.js"></script>
+        <script src="views/message/message.controller.js"></script>
+        <script src="views/myprofile/myprofile.controller.js"></script>
+        <script src="views/network/network.controller.js"></script>
+        <script src="views/register/register.controller.js"></script>
+        <script src="views/upload/upload.controller.js"></script>
+        <script src="views/userProfile/userProfile.controller.js"></script>
+        <script src="views/news/news.controller.js"></script>
+
+        <script src="services/UserService.js"></script>
+        <script src="services/AdsService.js"></script>
+        <script src="services/FriendService.js"></script>
+        <script src="services/MessageService.js"></script>
+        <script src="services/PostService.js"></script>
+        <script src="services/NewService.js"></script>
+        <script src="services/AuthService.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+            <header ng-include="'views/header1/header1.view.html'"></header>
+        </div>
+
+        <div class="container-fluid" ng-view></div>
+
+    </body>
+
+</html>
