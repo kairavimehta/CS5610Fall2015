@@ -8,7 +8,8 @@ module.exports = function (db) {
     var api = {
         getAllAds: getAllAds,
         postAd: postAd,
-        removeAd: removeAd
+        removeAd: removeAd,
+        updateAd: updateAd
     };
 
     return api;
@@ -39,5 +40,21 @@ module.exports = function (db) {
         });
         return deferred.promise;
     };
-    
+
+    function updateAd(aid, ad) {
+        var deferred = q.defer();
+        AdsModel.findById(aid, function (err, ads) {
+            for (var prop in ads) {
+                if (!(typeof ad[prop] == 'undefined')) {
+                    ads[prop] = ad[prop];
+                };
+            };
+            ads.save(function (err) {
+                AdsModel.findById(aid, function (err, newad) {
+                    deferred.resolve(newad);
+                });
+            });
+        });
+        return deferred.promise;
+    };
 };

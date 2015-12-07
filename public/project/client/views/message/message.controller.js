@@ -9,7 +9,8 @@
         model.chat = chat;
         model.removeMsg = removeMsg;
         model.getthread = getthread;
-        model.showthread = false;
+        model.getall = getall;
+        model.all = true;
 
         $rootScope.$on('auth', function (user) {
             init();
@@ -22,7 +23,6 @@
                 MessageService.getMessages(model.userid)
                     .then(function (msgs) {
                         model.msgs = msgs;
-                        console.log(model.showthread);
                     });
             };
         };
@@ -33,8 +33,7 @@
             $location.path("/user/" + model.userid + "/chat/" + pid);
         };
 
-        function removeMsg(ind) {
-            var index = model.msgs.length - ind - 1;
+        function removeMsg(index) {
             MessageService.removeMsg(model.userid, model.msgs[index]._id)
                 .then(function (msgs) {
                     model.msgs = msgs;
@@ -42,12 +41,15 @@
         };
 
         function getthread(pid) {
-            MessageService.getmsgforperson($rootScope.user._id, pid)
+            MessageService.getmsgforperson(model.userid, pid)
                 .then(function (msgs) {
-                    model.showthread = true;
+                    model.all = false;
                     model.thread = msgs;
-                    console.log(msgs);
                 });
         };
+
+        function getall() {
+            model.all = true;
+        }
     };
 })();

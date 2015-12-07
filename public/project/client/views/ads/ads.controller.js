@@ -34,32 +34,39 @@
         init();
 
         function editAd(by, on, add, from, to, det) {
-            console.log(by);
-            var editedAd = {
-                "userId": model.userid,
-                "postedBy": by,
-                "postedOn": on,
-                "from": from,
-                "to": to,
-                "address": add,
-                "details": det
-            };
-            console.log(editedAd);
+            if (from > to) {
+                alert("Start cannot be before end");
+            } else if (from && to && add && det) {
+                var editedAd = {
+                    "_id": selectedAd._id,
+                    "userId": model.userid,
+                    "postedBy": by,
+                    "postedOn": on,
+                    "from": from,
+                    "to": to,
+                    "address": add,
+                    "details": det
+                };
+                AdsService.updateAd(selectedAd._id, editedAd)
+                    .then(function (allAds) {
+                        init();
+                    });
+                model.isEdit = false;
+            }
         }
+
+        var selectedAd = [];
 
         function selectAd(index) {
             model.isEdit = true;
-            var ad = model.ads[index];
-            console.log("selected", ad);
-            model.by = ad.postedBy;
-            model.on = ad.postedOn;
-            model.newaddress = ad.address;
-            model.newdetails = ad.details;
-
+            selectedAd = model.ads[index];
+            model.by = selectedAd.postedBy;
+            model.on = selectedAd.postedOn;
+            model.ad = selectedAd.address;
+            model.det = selectedAd.details;
         }
 
         function removeAd(index) {
-            //var curruser = $rootScope.user._id;
             AdsService.removeAd(model.ads[index]._id)
             .then(function (ads) {
                 model.ads = ads;

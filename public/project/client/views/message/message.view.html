@@ -16,85 +16,56 @@
         </div>
         
         <div class="center wow fadeInDown">
-            <h2>My Messages</h2>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div ng-if="!model.showThread" ng-repeat="msg in model.msgs" class="single_comments">
-                        <img src="images/blog/avatar3.png" alt=""  />
-                        <p>{{msg.content}}</p>
-                        <div class="entry-meta small muted">
-                            <span>From <a href="#/user/{{model.userid}}/userProfile/{{msg.from}}">{{msg.fromUser}}</a></span>
-                                <span>On: <a href="#">{{msg.date}}</a></span>
-                        </div>
+            <h2 align="center">My Messages</h2>
+            <hr />
+
+
+            <div ng-show="model.all" ng-repeat="msg in model.msgs | unique:'from'">
+                <div class="single_comments">
+                    <div class="entry-meta small muted pull-left">
+                        <img src="images/blog/avatar3.png" alt="" />
+                        <span>From: <a href="#/user/{{model.userid}}/userProfile/{{msg.from}}">{{msg.fromUser}}</a></span>
+                        <br />
+                        <span>On: {{msg.date | date:"MM/dd/yyyy 'at' h:mma"}}</span>
                     </div>
                 </div>
-            </div>                     
-        </div>
-        
-        
-        <div class="row">
-            <h2 align="center">My Messages</h2>
-            <table ng-if="!model.showThread" class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th>From</th>
-                        <th>Subject</th>
-                        <th>Message</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="msg in model.msgs">
-                        <td>
-                            <p class="messages">{{msg.fromUser}}</p>
-                            <a href="#/user/{{model.userid}}/userProfile/{{msg.from}}">
-                                <img class="messagepic" src="../../../../project/client/images/person.jpg" />
-                            </a>
-                        </td>
-                        <td class="messages"><b>{{msg.subject}}</b></td>
-                        <td class="messages">{{msg.content}}</td>
-                        <td>
-                            <button ng-click="model.chat(msg.from)" type="submit" class="btn btn-default">Reply</button>
-                            <button ng-click="model.getthread(msg.from)" type="submit" class="btn btn-default">thread</button>
-                            <button ng-click="model.removeMsg($index)" class="btn btn-default btn-danger">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
 
-            <div ng-show="model.showThread" class="container" ng-repeat="t in model.thread">
-                <p>From: {{t.fromUser}}</p>
-                <p>{{t.content}}</p>
+                <div class="entry-meta small muted pull-right">
+                    <button ng-click="model.chat(msg.from)" type="submit" class="btn btn-default">Reply</button>
+                    <button ng-click="model.getthread(msg.from)" type="submit" class="btn btn-default">Thread</button>
+                    <button ng-click="model.removeMsg($index)" class="btn btn-default btn-danger">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+                <div class="single_comments">
+                    <div class="entry-meta small muted">
+                        <span>Subject: {{msg.subject}}</span>
+                    </div>
+                    <p>{{msg.content}}</p>
+                </div>
+                <div class="row"></div>
+                <hr />
             </div>
-
-            <!--<table ng-if="!model.showThread" class="table table-stripped">
-            <thead>
-                <tr>
-                    <th>From</th>
-                    <th>Subject</th>
-                    <th>Message</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="t in model.thread">
-                    <td>
-                        <a href="#/user/{{model.userid}}/userProfile/{{t.from}}">
-                            <p class="messages">{{t.fromUser}}</p>
-                        </a>
-                    </td>
-                    <td class="messages"><b>{{t.subject}}</b></td>
-                    <td class="messages">{{t.content}}</td>
-                </tr>
-            </tbody>
-        </table>-->
-
-            <button ng-show="model.showThread" type="submit" class="btn btn-default">See All</button>
-
+            <div ng-show="!model.all" ng-repeat="t in model.thread">
+                <div class="entry-meta small muted pull-left">
+                    <span>From: <a href="#/user/{{model.userid}}/userProfile/{{t.from}}">{{t.fromUser}}</a></span>
+                    <br />
+                    <span>On: {{t.date | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+                </div>
+                <div class="entry-meta small muted pull-right">
+                    <span ng-if="t.from == model.userid">Sent</span>
+                    <span ng-if="t.from != model.userid">Received</span>
+                </div>
+                <h4 class="lead">{{t.content}}</h4>
+                <hr />
+            </div>
+            <div ng-show="!model.all" class="container">
+                <button ng-click="model.getall()" type="submit" class="btn btn-default">SeeAll</button>
+            </div>
         </div>
     </div>
-      <div ng-show="!model.user">
-          <h1>Login <a href="#/login">HERE</a> to access</h1>
-      </div>
+    <div ng-show="!model.user">
+        <h2>Login <a href="#/login">HERE</a> to access</h2>
+    </div>
 </div>

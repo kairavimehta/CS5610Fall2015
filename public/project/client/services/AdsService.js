@@ -10,6 +10,7 @@
             getAds: getAds,
             postAd: postAd,
             removeAd: removeAd,
+            updateAd: updateAd
         };
         return service;
 
@@ -34,6 +35,15 @@
         function removeAd(aid) {
             var deferred = $q.defer();
             $http.delete("/api/project/ad/" + aid)
+                .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        };
+
+        function updateAd(aid, ad) {
+            var deferred = $q.defer();
+            $http.put("/api/project/ad/" + aid, ad)
                 .success(function (response) {
                     deferred.resolve(response);
                 });
