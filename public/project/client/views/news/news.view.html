@@ -1,44 +1,39 @@
 ﻿<div class="container" ng-init="init()">
-    <div class="row">
-        <h2 align="center"> Search News</h2>
-        <hr />
-    </div>
-    <div class="row">
-        <form class="form-inline">
-            <div class="form-group">
+    <br>
+    <div class="center wow fadeInDown">
+        <h2>Search News</h2>
+        <form class="form-horizontal">
+            <div class="form-group pull-left">
                 <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
                     <input ng-model="name" type="text" class="form-control" id="search" placeholder="Search Latest News">
                 </div>
+                <button ng-click="model.find(name)" type="submit" class="btn btn-primary">Search</button>
             </div>
-            <button ng-click="model.find(name)" type="submit" class="btn btn-primary">Search</button>
         </form>
-        <hr />
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-12">
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th>Headline</th>
-                        <th>Snippet</th>
-                        <th>Full Article</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="line in model.news">
-                        <td class="posts">
-                            {{line.headline.main}}
-                        </td>
-                        <td class="posts">
-                            {{line.snippet}}
-                        </td>
-                        <td class="posts">
-                            <a href="{{line.web_url}}" target="_blank">Click Here!!</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>Headline</th>
+                    <th>Snippet</th>
+                    <th>Full Article</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="line in model.news">
+                    <td width="30%" class="posts">
+                        {{line.headline.main}}
+                    </td>
+                    <td width="62%" class="posts">
+                        {{line.snippet}}
+                    </td>
+                    <td width="8%" class="posts">
+                        <a href="{{line.web_url}}" target="_blank">Click Here!!</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

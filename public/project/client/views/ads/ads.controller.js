@@ -14,8 +14,6 @@
         model.userid = "";
         model.isEdit = false;
 
-        //edit ad
-
         $rootScope.$on('auth', function (user) {
             init();
         });
