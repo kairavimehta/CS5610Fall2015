@@ -13,8 +13,14 @@
             if (name) {
                 UserService.findUsers(name)
                     .then(function (users) {
-                        model.users = users;
-                        model.search = true;
+                        if (users.length > 0) {
+                            model.users = users;
+                            model.search = true;
+                            model.found = false;
+                        }
+                        else {
+                            model.found = true;
+                        }
                     });
             };
         };

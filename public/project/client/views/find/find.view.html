@@ -12,6 +12,9 @@
             </div>
         </form>
     </div>
+    <div class="row" ng-if="model.found">
+        <h2 class="lead">User doesn't exist. Check the name entered and try again!!</h2>
+    </div>
     <div class="row">
         <table ng-if="model.search" class="table table-stripped">
             <thead>
