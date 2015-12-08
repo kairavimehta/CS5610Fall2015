@@ -6,7 +6,7 @@
     <div class="row contact-wrap"> 
         <div class="status alert alert-success" style="display: none"></div>
         <form id="main-contact-form" class="contact-form">
-            <div class="col-sm-5 col-sm-offset-1">
+            <div class="col-sm-8 col-sm-offset-1">
                 <div class="form-group">
                     <label for="fname">FirstName:</label>
                     <input ng-model="fname" type="text" class="form-control" id="fname" placeholder="Jane" required="required">
@@ -30,12 +30,10 @@
                 <div class="form-group">
                     <label for="vpwd">Verify Password:</label>
                     <input ng-model="vpassword" type="password" class="form-control" id="vpwd" placeholder="Verify Password" required="required">
-                </div>                        
-            </div>
-            <div class="col-sm-5">                       
+                </div> 
                 <div class="form-group">
                     <button ng-click="model.register(uname,password,vpassword,email,fname,lname)" type="submit" name="submit" class="btn btn-primary btn-lg" required="required">MakeMeAMember</button>
-                </div>
+                </div>                       
             </div>
         </form> 
     </div>

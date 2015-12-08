@@ -50,16 +50,21 @@
         };
 
         function add(status) {
-            var currUser = $rootScope.user._id;
-            var newPost = {
-                "created": new Date(),
-                "content": status,
-                "userId": currUser
-            };
-            PostService.addPost(currUser, newPost)
-                .then(function (newPost) {
-                    $location.path("/myprofile");
-                });
+            if (status) {
+                var currUser = $rootScope.user._id;
+                var newPost = {
+                    "created": new Date(),
+                    "content": status,
+                    "userId": currUser
+                };
+                PostService.addPost(currUser, newPost)
+                    .then(function (newPost) {
+                        $location.path("/myprofile");
+                    });
+            }
+            else {
+                alert("Cannot add an empty status");
+            }
         };
     };
 })();
