@@ -18,10 +18,10 @@
                 <tr ng-show="model.isEdit">
                     <td class="networkname">{{model.by}}</td>
                     <td ng-model="on"  class="networkname">{{model.on | date:"MM/dd/yyyy"}}</td>
-                    <td><input ng-model="model.ad" type="text" size="5"/></td>
+                    <td><input ng-model="model.ad" type="text" size="10"/></td>
                     <td><input ng-model="model.sd" type="date" /></td>
                     <td><input ng-model="model.ed" type="date" /></td>
-                    <td><input ng-model="model.det" type="text" size="5"/></td>
+                    <td><input ng-model="model.det" type="text" size="50"/></td>
                     <td>
                         <button ng-click="model.editAd(model.by,model.on,model.ad,model.sd,model.ed,model.det)" class="btn btn-default btn-success">
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
